@@ -135,6 +135,35 @@
   .score-cta .btn-secondary { display: inline-block; background: transparent; color: var(--amber); padding: 14px 28px; border: 1px solid var(--amber); font-family: 'Inter', sans-serif; font-weight: 600; font-size: 11pt; letter-spacing: 0.06em; }
   .score-cta .btn-secondary:hover { background: var(--amber); color: white; border-color: var(--amber); }
 
+  /* Coroner interactive */
+  .coroner-run { padding: 80px 0; background: var(--cream); border-top: 1px solid var(--hairline); }
+  .coroner-empty { max-width: 720px; }
+  .coroner-summary { background: white; padding: 20px 24px; margin: 24px 0 32px; border-left: 3px solid var(--amber); display: grid; grid-template-columns: max-content 1fr; gap: 8px 28px; max-width: 760px; }
+  @media (max-width: 700px) { .coroner-summary { grid-template-columns: 1fr; gap: 4px; } }
+  .coroner-summary .key { font-family: 'Inter', sans-serif; font-weight: 500; font-size: 10pt; color: rgba(26,42,71,0.65); letter-spacing: 0.04em; }
+  .coroner-summary .val { font-family: 'Inter', sans-serif; font-weight: 600; font-size: 11pt; color: var(--navy); }
+  .coroner-form { background: white; padding: 28px 32px 32px; max-width: 720px; border-left: 3px solid var(--amber); }
+  .coroner-form-h { font-family: 'Cormorant Garamond', Georgia, serif; font-weight: 600; font-size: 22pt; line-height: 1.2; color: var(--navy); margin-bottom: 20px; }
+  .cf-row { margin-bottom: 22px; }
+  .cf-row label { font-family: 'Inter', sans-serif; font-weight: 500; font-size: 11pt; color: var(--navy); display: block; margin-bottom: 10px; }
+  .cf-row .cf-val { color: var(--amber); font-weight: 700; margin-left: 6px; }
+  .cf-row input[type=range] { width: 100%; accent-color: var(--amber); }
+  .cf-row select { width: 100%; padding: 10px 12px; font-family: 'Inter', sans-serif; font-size: 11pt; color: var(--navy); border: 1px solid var(--hairline); background: white; }
+  .coroner-form .cf-submit { display: inline-block; background: var(--amber); color: white; padding: 14px 32px; border: none; font-family: 'Inter', sans-serif; font-weight: 700; font-size: 11pt; letter-spacing: 0.1em; cursor: pointer; margin-top: 8px; }
+  .coroner-form .cf-submit:hover { background: var(--amber-soft); color: white; }
+  .coroner-output { margin-top: 32px; max-width: 980px; }
+  .co-card { background: white; padding: 32px 32px 28px; border: 1px solid var(--hairline); border-top: 3px solid var(--amber); margin-bottom: 18px; }
+  .co-tag { font-family: 'Inter', sans-serif; font-weight: 700; font-size: 10pt; color: var(--amber); letter-spacing: 0.26em; margin-bottom: 12px; }
+  .co-ruling { font-family: 'Cormorant Garamond', Georgia, serif; font-weight: 700; font-size: 32pt; line-height: 1; margin-bottom: 14px; }
+  .co-line { font-family: 'Inter', sans-serif; font-size: 12pt; line-height: 1.6; color: var(--navy); margin-bottom: 22px; }
+  .co-pillars { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; padding: 16px 18px; background: var(--cream); margin-bottom: 18px; }
+  @media (max-width: 700px) { .co-pillars { grid-template-columns: 1fr 1fr; } }
+  .co-pillar-name { font-family: 'Inter', sans-serif; font-weight: 600; font-size: 9pt; color: rgba(26,42,71,0.65); letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 4px; }
+  .co-pillar-val { font-family: 'Cormorant Garamond', Georgia, serif; font-weight: 700; font-size: 22pt; color: var(--navy); line-height: 1; }
+  .co-eur { padding-top: 18px; border-top: 2px solid var(--amber); }
+  .co-eur-row { font-family: 'Inter', sans-serif; font-size: 12pt; line-height: 1.6; color: var(--navy); margin-bottom: 6px; }
+  .co-eur-row strong { color: var(--amber); font-weight: 700; }
+
   /* Run it block */
   .run-it { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; margin-top: 28px; max-width: 980px; }
   @media (max-width: 760px) { .run-it { grid-template-columns: 1fr; } }
@@ -313,15 +342,189 @@
 <section class="score-cta">
   <div class="glow-tr"></div>
   <div class="container inner">
-    <div class="kicker">Score your own</div>
-    <h2>See what the AI BVF says about <span class="amber">your</span> AI initiative.</h2>
-    <p>Drop in your industry, function, AI tier, readiness, and pillar scores. The scorer returns Stop, Fix, Accelerate, or Keep with EUR ranges grounded in McKinsey, Gartner, BCG, Deloitte, Forrester, Accenture, and ServiceNow benchmarks. Same engine that scored the procurement and triage fixtures above, your inputs land your own verdict.</p>
+    <div class="kicker">Score your own, two-step flow</div>
+    <h2>Step one, the AI BVF. Step two, the <span class="amber">Coroner</span> on this page.</h2>
+    <p>Score an AI initiative on the AI BVF first, the four pillars and your business inputs come back here in the URL. Answer one workflow-shape question on the next section, the Coroner runs the same AI BVF rules with workflow drag layered on top, and returns Stop, Fix, Accelerate, or Keep with EUR drag and saving denominated. Nothing leaves your browser, all client-side.</p>
     <div class="actions">
-      <a href="https://bvf-app.vercel.app/protocol/scorer" class="btn-primary plain" target="_blank" rel="noopener">Open the scorer</a>
+      <a href="https://bvf-app.vercel.app/protocol/scorer" class="btn-primary plain">Start with the AI BVF</a>
       <a href="https://bvf-app.vercel.app/protocol" class="btn-secondary plain" target="_blank" rel="noopener">Read the protocol</a>
     </div>
   </div>
 </section>
+
+<section class="coroner-run">
+  <div class="container">
+    <div id="coroner-empty" class="coroner-empty">
+      <div class="section-kicker">Step two, the Coroner</div>
+      <h2 class="section-head">Finish the AI BVF, come back here.</h2>
+      <p class="section-body">Once you complete the AI BVF and copy the share link, paste it into the address bar on this page and the Coroner picks up the four pillar scores plus your business inputs, asks one shape question on the workflow itself, and returns the verdict. Until then the form below stays hidden.</p>
+    </div>
+
+    <div id="coroner-active" hidden>
+      <div class="section-kicker">Coroner verdict on your workflow</div>
+      <h2 class="section-head">One workflow question, then the verdict.</h2>
+      <p class="section-body">The AI BVF scored your initiative. The Coroner now layers workflow drag factors on top, recomputes the four pillars, and returns the workflow-level verdict.</p>
+
+      <div class="coroner-summary" id="coroner-summary"></div>
+
+      <form class="coroner-form" id="coroner-form" onsubmit="return false;">
+        <div class="coroner-form-h">Tell the Coroner the shape of the workflow.</div>
+        <div class="cf-row">
+          <label for="cf-activities">Distinct activities in this workflow<span class="cf-val" id="cf-activities-val">10</span></label>
+          <input type="range" id="cf-activities" min="1" max="30" value="10">
+        </div>
+        <div class="cf-row">
+          <label for="cf-integrations">System integrations involved<span class="cf-val" id="cf-integrations-val">4</span></label>
+          <input type="range" id="cf-integrations" min="0" max="20" value="4">
+        </div>
+        <div class="cf-row">
+          <label for="cf-exception">Exception or rework rate<span class="cf-val" id="cf-exception-val">15</span><span style="color:var(--navy);font-weight:500;">%</span></label>
+          <input type="range" id="cf-exception" min="0" max="60" value="15">
+        </div>
+        <div class="cf-row">
+          <label for="cf-authority">Decision authority shape</label>
+          <select id="cf-authority">
+            <option value="single">Single owner, decisive</option>
+            <option value="committee">Committee sign-off</option>
+            <option value="delegated">Delegated multi-step approval chain</option>
+          </select>
+        </div>
+        <button type="button" id="cf-submit" class="cf-submit">Run the Coroner</button>
+      </form>
+
+      <div class="coroner-output" id="coroner-output" hidden></div>
+    </div>
+  </div>
+</section>
+
+<script>
+(function() {
+  function parseHash() {
+    var h = window.location.hash;
+    if (!h || h.length < 2) return null;
+    var p = new URLSearchParams(h.slice(1));
+    if (!p.get('i') || p.get('sa') === null) return null;
+    return {
+      industry: p.get('i'),
+      revenue: Number(p.get('r')) || 0,
+      fn: p.get('f'),
+      tier: p.get('t'),
+      readiness: p.get('x'),
+      sa: Number(p.get('sa')),
+      fr: Number(p.get('fr')),
+      ce: Number(p.get('ce')),
+      gr: Number(p.get('gr'))
+    };
+  }
+
+  var FN_LABEL = { finance: 'Finance', hr: 'HR', sales: 'Sales', supply: 'Supply chain', cx: 'Customer experience', risk: 'Risk', it: 'IT', rd: 'R&D' };
+  var TIER_LABEL = { gen1: 'Gen 1, scripted', gen2: 'Gen 2, GenAI assist', gen3: 'Gen 3, agentic' };
+  var READINESS_LABEL = { agile: 'Agile, collaborative', traditional: 'Traditional hierarchy', siloed: 'Siloed, bureaucratic' };
+  var INDUSTRY_LABEL = { manufacturing: 'Manufacturing & Supply Chain', financial_services: 'Financial Services', healthcare: 'Healthcare', retail: 'Retail', tech: 'Technology', professional_services: 'Professional Services', public: 'Public sector', energy: 'Energy', telecom: 'Telecom', media: 'Media' };
+
+  function fmtEUR(n) {
+    if (!isFinite(n)) return '—';
+    var abs = Math.abs(n);
+    if (abs >= 1e9) return '€' + (n/1e9).toFixed(2) + 'bn';
+    if (abs >= 1e6) return '€' + (n/1e6).toFixed(1) + 'm';
+    if (abs >= 1e3) return '€' + (n/1e3).toFixed(0) + 'k';
+    return '€' + Math.round(n);
+  }
+
+  function compute(ai, wf) {
+    var exceptionDrag = wf.exception / 100;
+    var integrationDrag = Math.min(wf.integrations / 15, 1);
+    var authorityWeight = wf.authority === 'delegated' ? 1.5 : wf.authority === 'committee' ? 1.2 : 1.0;
+    var fr_adj = ai.fr * (1 - exceptionDrag * 0.5);
+    var ce_adj = ai.ce * (1 - integrationDrag * 0.3);
+    var gr_adj = Math.min(ai.gr + exceptionDrag * 30 + (authorityWeight - 1) * 25, 100);
+    var sa_adj = ai.sa;
+    var stopPattern = wf.authority === 'delegated' && wf.activities >= 10 && wf.exception >= 25;
+    var label, tone, line;
+    if (stopPattern) {
+      label = 'Stop'; tone = '#8B2020';
+      line = 'Workflow drag exceeds the AI lift. The right move is to eliminate the workflow under one delegated rule before any agent touches it.';
+    } else if (gr_adj >= 70 || fr_adj <= 20) {
+      label = 'Stop'; tone = '#8B2020';
+      line = gr_adj >= 70 ? 'Governance risk above the safe threshold once workflow drag is layered in.' : 'Financial return drained by the exception load. Redesign before scaling.';
+    } else if (sa_adj >= 60 && fr_adj >= 60 && ce_adj >= 60 && gr_adj <= 40) {
+      label = 'Accelerate'; tone = '#15803D';
+      line = 'All four pillars clear under workflow drag. Fund the agentic redesign and ship in shadow mode for 30 days.';
+    } else {
+      label = 'Fix'; tone = '#B45309';
+      var gaps = [];
+      if (sa_adj < 60) gaps.push('strategic alignment is weak');
+      if (fr_adj < 60) gaps.push('financial return drained by exceptions');
+      if (ce_adj < 60) gaps.push('change enablement strained by integration load');
+      if (gr_adj > 40) gaps.push('governance exposure under workflow drag');
+      line = 'Workable, but ' + gaps.join('; ') + '. Redesign the workflow before automating.';
+    }
+    var drag = ai.revenue * (exceptionDrag * 0.015) * (wf.activities / 10) * authorityWeight;
+    var saving = label === 'Stop' ? drag * 0.85 : null;
+    return { label: label, tone: tone, line: line, fr_adj: Math.round(fr_adj), ce_adj: Math.round(ce_adj), gr_adj: Math.round(gr_adj), sa_adj: Math.round(sa_adj), drag: drag, saving: saving };
+  }
+
+  function renderSummary(ai) {
+    var s = document.getElementById('coroner-summary');
+    s.innerHTML = ''
+      + '<span class="key">Industry</span><span class="val">' + (INDUSTRY_LABEL[ai.industry] || ai.industry) + '</span>'
+      + '<span class="key">Annual revenue</span><span class="val">' + fmtEUR(ai.revenue) + '</span>'
+      + '<span class="key">Function</span><span class="val">' + (FN_LABEL[ai.fn] || ai.fn) + '</span>'
+      + '<span class="key">AI tier</span><span class="val">' + (TIER_LABEL[ai.tier] || ai.tier) + '</span>'
+      + '<span class="key">Readiness</span><span class="val">' + (READINESS_LABEL[ai.readiness] || ai.readiness) + '</span>'
+      + '<span class="key">AI BVF pillars</span><span class="val">SA ' + ai.sa + ' &middot; FR ' + ai.fr + ' &middot; CE ' + ai.ce + ' &middot; GR ' + ai.gr + '</span>';
+  }
+
+  function renderResult(ai, wf, r) {
+    var o = document.getElementById('coroner-output');
+    o.hidden = false;
+    o.innerHTML = ''
+      + '<div class="co-card">'
+      +   '<div class="co-tag">coroner verdict</div>'
+      +   '<div class="co-ruling" style="color:' + r.tone + '">' + r.label + '</div>'
+      +   '<div class="co-line">' + r.line + '</div>'
+      +   '<div class="co-pillars">'
+      +     '<div><div class="co-pillar-name">SA</div><div class="co-pillar-val">' + r.sa_adj + '</div></div>'
+      +     '<div><div class="co-pillar-name">FR</div><div class="co-pillar-val">' + r.fr_adj + '</div></div>'
+      +     '<div><div class="co-pillar-name">CE</div><div class="co-pillar-val">' + r.ce_adj + '</div></div>'
+      +     '<div><div class="co-pillar-name">GR</div><div class="co-pillar-val">' + r.gr_adj + '</div></div>'
+      +   '</div>'
+      +   '<div class="co-eur">'
+      +     '<div class="co-eur-row">Annual workflow drag, modelled: <strong>' + fmtEUR(r.drag) + '</strong></div>'
+      +     (r.saving ? '<div class="co-eur-row">Annual saving on a Stop ruling: <strong>' + fmtEUR(r.saving) + '</strong></div>' : '')
+      +   '</div>'
+      + '</div>'
+      + '<p class="section-body" style="margin-top:18px;">This is the Verdict layer only. The full Coroner envelope (Architect target-state plan, Wire MuleSoft Anypoint calls, Sequencer 90-day rollout) runs end-to-end on Python in the open-source repo. <a href="https://github.com/Bahamas1717/ai-bvf/tree/main/examples/workflow-coroner">See the full pipeline on GitHub</a>.</p>';
+  }
+
+  document.addEventListener('DOMContentLoaded', function() {
+    var ai = parseHash();
+    if (!ai) return;
+    document.getElementById('coroner-empty').hidden = true;
+    document.getElementById('coroner-active').hidden = false;
+    renderSummary(ai);
+    var fields = ['activities', 'integrations', 'exception'];
+    fields.forEach(function(f) {
+      var el = document.getElementById('cf-' + f);
+      var valEl = document.getElementById('cf-' + f + '-val');
+      el.addEventListener('input', function() { valEl.textContent = el.value; });
+    });
+    document.getElementById('cf-submit').addEventListener('click', function() {
+      var wf = {
+        activities: Number(document.getElementById('cf-activities').value),
+        integrations: Number(document.getElementById('cf-integrations').value),
+        exception: Number(document.getElementById('cf-exception').value),
+        authority: document.getElementById('cf-authority').value
+      };
+      var r = compute(ai, wf);
+      renderResult(ai, wf, r);
+      setTimeout(function() {
+        document.getElementById('coroner-output').scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }, 60);
+    });
+  });
+})();
+</script>
 
 <section class="body white-bg">
   <div class="container">
