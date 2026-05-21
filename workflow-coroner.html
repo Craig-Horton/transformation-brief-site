@@ -257,7 +257,7 @@
     <h1>The Workflow Coroner</h1>
     <p class="subtitle">Stop the wrong work before AI automates it. An open-source agent pipeline that reads Celonis-shaped event logs, scores against the AI Business Value Framework, and emits MuleSoft Anypoint calls when the ruling is Stop.</p>
     <div class="masthead-actions" aria-label="Workflow Coroner actions">
-      <a href="./workflow-coroner.html#i=manufacturing&r=125000000&f=finance&t=gen3&x=agile&sa=72&fr=68&ce=64&gr=28" class="primary">Run sample workmate</a>
+      <a href="./workflow-coroner.html#i=manufacturing&r=125000000&f=finance&t=gen3&x=agile&sa=72&fr=68&ce=64&gr=28" class="primary sample-run">Run sample workmate</a>
       <a href="#technical-pipeline" class="secondary">Inspect the pipeline</a>
     </div>
     <div class="byline">
@@ -412,7 +412,7 @@
       <h2 class="section-head">Finish the AI BVF, come back here.</h2>
       <p class="section-body">Once you complete the AI BVF and copy the share link, paste it into the address bar on this page and the Coroner picks up the four pillar scores plus your business inputs, asks one shape question on the workflow itself, and returns the verdict. Until then the form below stays hidden.</p>
       <div class="empty-actions">
-        <a href="./workflow-coroner.html#i=manufacturing&r=125000000&f=finance&t=gen3&x=agile&sa=72&fr=68&ce=64&gr=28" class="primary">Try the sample run</a>
+        <a href="./workflow-coroner.html#i=manufacturing&r=125000000&f=finance&t=gen3&x=agile&sa=72&fr=68&ce=64&gr=28" class="primary sample-run">Try the sample run</a>
         <a href="https://bvf.craighortonadvisory.com/?code=bvf2026" class="secondary">Start with AI BVF</a>
       </div>
     </div>
@@ -485,6 +485,7 @@
   var TIER_LABEL = { gen1: 'Gen 1, scripted', gen2: 'Gen 2, GenAI assist', gen3: 'Gen 3, agentic' };
   var READINESS_LABEL = { agile: 'Agile, collaborative', traditional: 'Traditional hierarchy', siloed: 'Siloed, bureaucratic' };
   var INDUSTRY_LABEL = { manufacturing: 'Manufacturing & Supply Chain', financial_services: 'Financial Services', healthcare: 'Healthcare', retail: 'Retail', tech: 'Technology', professional_services: 'Professional Services', public: 'Public sector', energy: 'Energy', telecom: 'Telecom', media: 'Media' };
+  var SAMPLE_HASH = 'i=manufacturing&r=125000000&f=finance&t=gen3&x=agile&sa=72&fr=68&ce=64&gr=28';
 
   function h(value) {
     return String(value == null ? '' : value)
@@ -869,6 +870,21 @@
 
   document.addEventListener('DOMContentLoaded', function() {
     var current = activateFromHash();
+
+    document.querySelectorAll('.sample-run').forEach(function(link) {
+      link.addEventListener('click', function(e) {
+        e.preventDefault();
+        if (window.location.hash.slice(1) !== SAMPLE_HASH) {
+          window.location.hash = SAMPLE_HASH;
+          return;
+        }
+        current = activateFromHash();
+        setTimeout(function() {
+          var anchor = document.getElementById('coroner-active');
+          if (anchor) anchor.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }, 80);
+      });
+    });
 
     var fields = ['activities', 'integrations', 'exception'];
     fields.forEach(function(f) {
