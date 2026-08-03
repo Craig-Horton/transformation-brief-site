@@ -160,6 +160,13 @@
   .empty-actions .primary:hover { background: var(--amber-soft); color: white; border-color: var(--amber-soft); }
   .empty-actions .secondary { color: var(--amber); }
   .empty-actions .secondary:hover { color: var(--navy); border-color: var(--navy); }
+  .bvf-handoff { max-width: 720px; margin-top: 26px; padding: 22px 24px; background: white; border-left: 3px solid var(--amber); }
+  .bvf-handoff label { display: block; margin-bottom: 9px; font-family: 'Inter', sans-serif; font-weight: 700; font-size: 10.5pt; color: var(--navy); }
+  .bvf-handoff-row { display: grid; grid-template-columns: minmax(0,1fr) auto; gap: 10px; }
+  .bvf-handoff input { min-width: 0; padding: 12px 13px; border: 1px solid rgba(26,42,71,.28); font-family: 'Inter', sans-serif; font-size: 10.5pt; color: var(--navy); }
+  .bvf-handoff button { padding: 12px 20px; border: 1px solid var(--amber); background: var(--amber); color: white; font-family: 'Inter', sans-serif; font-weight: 700; font-size: 10.5pt; cursor: pointer; }
+  .bvf-handoff-status { min-height: 20px; margin: 8px 0 0; font-family: 'Inter', sans-serif; font-size: 9.5pt; color: rgba(26,42,71,.68); }
+  @media (max-width: 700px) { .bvf-handoff-row { grid-template-columns: 1fr; } .bvf-handoff button { width: 100%; } }
   .coroner-summary { background: white; padding: 20px 24px; margin: 24px 0 32px; border-left: 3px solid var(--amber); display: grid; grid-template-columns: max-content 1fr; gap: 8px 28px; max-width: 760px; }
   @media (max-width: 700px) { .coroner-summary { grid-template-columns: 1fr; gap: 4px; } }
   .coroner-summary .key { font-family: 'Inter', sans-serif; font-weight: 500; font-size: 10pt; color: rgba(26,42,71,0.65); letter-spacing: 0.04em; }
@@ -308,7 +315,7 @@
       <div class="agent">
         <div class="agent-tag">phase 1</div>
         <div class="agent-name">AI BVF</div>
-        <div class="agent-desc">The scoring engine, the public protocol at <a href="https://bvf-app.vercel.app/protocol">bvf-app.vercel.app/protocol</a>, the live scorer at <a href="https://bvf-app.vercel.app/protocol/scorer">/protocol/scorer</a>, plus aibvf-mcp on the MCP registry. Built first, currently live, 2,897 downloads in the rolling 30-day window. The decision layer.</div>
+        <div class="agent-desc">The scoring engine, the public protocol at <a href="https://www.aibvf.com/protocol">www.aibvf.com/protocol</a>, the current assessment at <a href="https://www.aibvf.com/start">www.aibvf.com/start</a>, plus aibvf-mcp on the MCP registry. Built first and currently live, this is the decision layer.</div>
       </div>
       <div class="agent">
         <div class="agent-tag">phase 2</div>
@@ -399,8 +406,8 @@
     <h2>Step one, the AI BVF. Step two, the <span class="amber">Coroner</span> on this page.</h2>
     <p>Score an AI initiative on the AI BVF first, the four pillars and your business inputs come back here in the URL. Answer one workflow-shape question on the next section, the Coroner runs the same AI BVF rules with workflow drag layered on top, and returns Stop, Fix, Accelerate, or Keep with EUR drag and saving denominated. Your workflow inputs never leave your browser, the verdict runs client-side.</p>
     <div class="actions">
-      <a href="https://bvf-app.vercel.app/protocol/scorer" class="btn-primary plain">Start with the AI BVF</a>
-      <a href="https://bvf-app.vercel.app/protocol" class="btn-secondary plain" target="_blank" rel="noopener">Read the protocol</a>
+      <a href="https://www.aibvf.com/start" class="btn-primary plain">Start with the AI BVF</a>
+      <a href="https://www.aibvf.com/protocol" class="btn-secondary plain" target="_blank" rel="noopener">Read the protocol</a>
     </div>
   </div>
 </section>
@@ -410,10 +417,18 @@
     <div id="coroner-empty" class="coroner-empty">
       <div class="section-kicker">Step two, the Coroner</div>
       <h2 class="section-head">Finish the AI BVF, come back here.</h2>
-      <p class="section-body">Once you complete the AI BVF and copy the share link, paste it into the address bar on this page and the Coroner picks up the four pillar scores plus your business inputs, asks one shape question on the workflow itself, and returns the verdict. Until then the form below stays hidden.</p>
+      <p class="section-body">Complete the current AI BVF assessment, open the decision record and copy its address, then paste it below. The Coroner reads the four pillar scores and business context from that link, asks one question about the workflow shape and returns the verdict.</p>
       <div class="empty-actions">
         <a href="./workflow-coroner.html#i=manufacturing&r=125000000&f=finance&t=gen3&x=agile&sa=72&fr=68&ce=64&gr=28" class="primary sample-run">Try the sample run</a>
-        <a href="https://bvf.craighortonadvisory.com/?code=bvf2026" class="secondary">Start with AI BVF</a>
+        <a href="https://www.aibvf.com/start" class="secondary">Start with AI BVF</a>
+      </div>
+      <div class="bvf-handoff">
+        <label for="bvf-decision-link">Paste the AI BVF decision record link</label>
+        <div class="bvf-handoff-row">
+          <input id="bvf-decision-link" type="url" inputmode="url" placeholder="https://www.aibvf.com/protocol/scorer#...">
+          <button id="bvf-decision-load" type="button">Continue to the Coroner</button>
+        </div>
+        <p class="bvf-handoff-status" id="bvf-handoff-status" aria-live="polite"></p>
       </div>
     </div>
 
@@ -479,6 +494,15 @@
       ce: Number(p.get('ce')),
       gr: Number(p.get('gr'))
     };
+  }
+
+  function decisionRecordHash(value) {
+    var input = String(value || '').trim();
+    if (!input) return null;
+    var hash = input.charAt(0) === '#' ? input.slice(1) : new URL(input, window.location.href).hash.slice(1);
+    var params = new URLSearchParams(hash);
+    if (!params.get('i') || params.get('sa') === null || params.get('fr') === null || params.get('ce') === null || params.get('gr') === null) return null;
+    return params.toString();
   }
 
   var FN_LABEL = { finance: 'Finance', hr: 'HR', sales: 'Sales', supply: 'Supply chain', cx: 'Customer experience', risk: 'Risk', it: 'IT', rd: 'R&D' };
@@ -870,6 +894,31 @@
 
   document.addEventListener('DOMContentLoaded', function() {
     var current = activateFromHash();
+    var decisionLink = document.getElementById('bvf-decision-link');
+    var decisionLoad = document.getElementById('bvf-decision-load');
+    var decisionStatus = document.getElementById('bvf-handoff-status');
+
+    function loadDecisionRecord() {
+      try {
+        var hash = decisionRecordHash(decisionLink.value);
+        if (!hash) {
+          decisionStatus.textContent = 'This link does not contain a complete AI BVF decision record.';
+          return;
+        }
+        decisionStatus.textContent = 'Decision record accepted.';
+        window.location.hash = hash;
+      } catch (error) {
+        decisionStatus.textContent = 'Paste the full decision record link from the AI BVF.';
+      }
+    }
+
+    decisionLoad.addEventListener('click', loadDecisionRecord);
+    decisionLink.addEventListener('keydown', function(event) {
+      if (event.key === 'Enter') {
+        event.preventDefault();
+        loadDecisionRecord();
+      }
+    });
 
     document.querySelectorAll('.sample-run').forEach(function(link) {
       link.addEventListener('click', function(e) {
@@ -979,7 +1028,7 @@
   <div class="container">
     <div class="section-kicker">for developers, the technical on-ramp</div>
     <h2 class="section-head">The technical on-ramp.</h2>
-    <p class="section-body">This section is for developers and technical operators. The senior-leader on-ramp is the workmate above, which picks up your AI BVF inputs from the scorer at <a href="https://bvf-app.vercel.app/protocol/scorer">bvf-app.vercel.app/protocol/scorer</a> and runs the verdict in browser against a typical workflow profile.</p>
+    <p class="section-body">This section is for developers and technical operators. The senior-leader on-ramp is the workmate above, which picks up the decision record from <a href="https://www.aibvf.com/start">www.aibvf.com/start</a> and runs the verdict in browser against a typical workflow profile.</p>
     <p class="section-body">The technical path below is the deepest way to interact with the Coroner. Open source on GitHub, Python in 30 seconds, two fixtures included, reads your actual Celonis-shaped event log rather than a typical profile.</p>
 
     <div class="run-it">
