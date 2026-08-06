@@ -33,10 +33,18 @@ Legend: **Verified** means the claim and its date were confirmed against the pub
 ## Unverified, do not publish as stated
 
 ### SAP, organisational change management as an investment protection measure
-- Claimed URL: https://news.sap.com/2026/08/ai-adoption-transformation-what-customers-report/
-- Claim: OCM accounted for **4.3%** of a **€3.6bn** corporate overhaul, making it the single largest line item in the deployment contract
-- Status: **could not be verified.** news.sap.com returns HTTP 403 to automated fetching, and no independent search result corroborates the 4.3%, the €3.6bn, or the largest-line-item characterisation
-- If Craig can supply the primary source or a direct quotation, this becomes the strongest lead available for the issue. Until then it stays out.
+- Claimed URL: https://news.sap.com/2026/08/ai-adoption-transformation-what-customers-report/ (returns 403, does not appear in any index)
+- Actual article located: **German edition, July 2026**, https://news.sap.com/germany/2026/07/ai-adoption-und-sap-transformation-was-kunden-aus-der-praxis-berichten/
+- Claim: OCM accounted for 4.3% of a EUR 3.6bn corporate overhaul, making it the single largest line item in the deployment contract
+- Status: **not found. Do not publish.** Four searches, including one aimed directly at budget allocation, returned the change management structure and nothing on budget percentages. Treat as generated rather than reported unless Craig confirms it visually on the page.
+
+### SAP customer reporting, what the article does support
+- Source: SAP News Center Germany, July 2026 (URL above)
+- **Hapag-Lloyd "Fast Forward" S/4HANA finance transformation**: 4,000 SAP users in more than 140 countries
+- **265 key users acting as change ambassadors across six regions**, translating global standards into local language and practice
+- Quotation, Dulaan Punsag-Odefey, OCM Lead at Hapag-Lloyd: "Change Management is anchored in our program as a strategic enabler"
+- SAP's own framing: technology adoption alone does not create business value, and plugging AI agents into the system landscape will drive zero value
+- Status: **verified via multiple independent search results.** Primary page not directly retrievable, so quote conservatively and attribute to SAP customer reporting.
 
 ### SAP LeanIX, agent sprawl
 - URL: https://news.sap.com/2026/08/agent-sprawl-why-ai-governance-is-now-board-level-issue/
