@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Transformation Brief, Issue 18 briefing</title>
+<meta name="description" content="The Transformation Brief, Issue 18, briefing edition. Can you count your agents? The EU AI Act high-risk obligations came into force the same week research showed most enterprises cannot see an inventory of the agents they already run.">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;-webkit-print-color-adjust:exact;}
+  :root{--navy:#1a2a47;--amber:#c97a2b;--amber-soft:#e2a358;--white:#ffffff;--hair:rgba(26,42,71,0.18);}
+  html,body{background:var(--white);}
+  .mail{width:680px;max-width:100%;margin:0 auto;background:var(--white);font-family:'Inter',Arial,sans-serif;color:var(--navy);}
+
+  .top{background:var(--navy);color:var(--white);padding:26px 36px 22px;position:relative;}
+  .top .strip{position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,var(--amber) 0%,var(--amber-soft) 100%);}
+  .top .adv{font-weight:600;font-size:9pt;letter-spacing:0.22em;color:var(--amber-soft);margin-bottom:6px;}
+  .top .name{font-family:'Cormorant Garamond',Georgia,serif;font-weight:700;font-size:27pt;line-height:1;color:var(--white);}
+  .top .dateline{font-weight:600;font-size:8.5pt;letter-spacing:0.16em;color:var(--amber-soft);margin-top:10px;}
+
+  .sec{padding:26px 36px 6px;}
+  .greet{font-size:10.5pt;line-height:1.65;color:var(--navy);}
+  .greet .who{font-family:'Cormorant Garamond',Georgia,serif;font-weight:600;font-size:14pt;margin-bottom:2px;}
+  .greet .role{font-weight:700;font-size:8pt;letter-spacing:0.2em;color:var(--amber);margin-bottom:12px;}
+  .greet p{margin-bottom:8px;}
+
+  .flag{font-weight:700;font-size:9pt;letter-spacing:0.24em;color:var(--amber);border-top:2px solid var(--navy);padding-top:10px;margin-bottom:14px;}
+
+  .lead h2{font-family:'Cormorant Garamond',Georgia,serif;font-weight:700;font-size:18pt;line-height:1.15;color:var(--navy);margin-bottom:12px;}
+  .lead p{font-size:10.5pt;line-height:1.6;color:var(--navy);margin-bottom:8px;}
+  .lead ul{list-style:none;margin:4px 0 12px;}
+  .lead ul li{font-size:10.5pt;line-height:1.55;color:var(--navy);padding:5px 0 5px 18px;position:relative;}
+  .lead ul li:before{content:"";position:absolute;left:0;top:11px;width:8px;height:8px;background:var(--amber);}
+  .lead .src{display:block;font-weight:700;font-size:7.5pt;letter-spacing:0.14em;margin:2px 0 10px;}
+  .lead .src a{color:var(--amber);text-decoration:none;border-bottom:1px solid var(--amber-soft);}
+
+  .pulse{background:var(--navy);color:var(--white);padding:22px 26px;margin:24px 36px 6px;}
+  .pulse .ptag{font-weight:700;font-size:8.5pt;letter-spacing:0.22em;color:var(--amber-soft);margin-bottom:10px;}
+  .pulse p{font-size:10pt;line-height:1.6;color:var(--white);margin-bottom:10px;opacity:0.92;}
+  .pulse .q{font-family:'Cormorant Garamond',Georgia,serif;font-weight:500;font-size:14.5pt;line-height:1.35;color:var(--white);margin-bottom:12px;}
+  .pulse .cta{font-size:10pt;font-weight:600;color:var(--white);}
+  .pulse .cta a{color:var(--amber-soft);text-decoration:none;border-bottom:1px solid var(--amber-soft);}
+
+  .office{background:rgba(26,42,71,0.045);padding:22px 36px 18px;margin-top:22px;}
+  .office .clabel{font-weight:700;font-size:9pt;letter-spacing:0.24em;color:var(--amber);margin-bottom:10px;}
+  .office p{font-size:10.5pt;line-height:1.6;color:var(--navy);margin-bottom:8px;}
+
+  .story{display:flex;gap:14px;padding:12px 0;border-bottom:1px solid var(--hair);}
+  .story:last-of-type{border-bottom:none;}
+  .story .n{font-family:'Cormorant Garamond',Georgia,serif;font-weight:700;font-size:20pt;line-height:1;color:var(--amber);width:26px;flex-shrink:0;}
+  .story h3{font-family:'Cormorant Garamond',Georgia,serif;font-weight:600;font-size:13.5pt;line-height:1.2;color:var(--navy);margin-bottom:6px;}
+  .story p{font-size:10.5pt;line-height:1.55;color:var(--navy);margin-bottom:6px;}
+  .story p b{font-weight:700;}
+  .story .src{display:block;font-weight:700;font-size:7.5pt;letter-spacing:0.14em;margin-top:2px;}
+  .story .src a{color:var(--amber);text-decoration:none;border-bottom:1px solid var(--amber-soft);}
+
+  .qbox{background:var(--navy);color:var(--white);padding:20px 24px;margin:24px 36px;}
+  .qbox .qtag{font-weight:700;font-size:8.5pt;color:var(--amber-soft);letter-spacing:0.22em;margin-bottom:8px;}
+  .qbox .qtext{font-family:'Cormorant Garamond',Georgia,serif;font-weight:500;font-size:15pt;line-height:1.35;color:var(--white);}
+
+  .foot{background:var(--navy);color:var(--white);padding:20px 36px;margin-top:8px;}
+  .foot p{font-size:9pt;line-height:1.6;color:var(--white);opacity:0.9;}
+  .foot a{color:var(--amber-soft);text-decoration:none;}
+</style>
+</head>
+<body>
+<div class="mail">
+
+  <div class="top">
+    <div class="strip"></div>
+    <div class="adv">Craig Horton Advisory</div>
+    <div class="name">The Transformation Brief</div>
+    <div class="dateline">Issue 18 &nbsp;·&nbsp; Friday 7th August 2026</div>
+  </div>
+
+  <div class="sec">
+    <div class="greet">
+      <div class="who">Craig Horton</div>
+      <div class="role">The Transformation Brief</div>
+      <p>Good morning. On Sunday the high-risk obligations of the EU AI Act came into force, covering credit scoring, employment decisions, insurance underwriting and the rest of the regulated ground. In the same week SAP published research showing that 98% of companies have deployed AI agents or plan to, while fewer than half can see an inventory of the ones they already run.</p>
+      <p>The rules arrived before the register.</p>
+    </div>
+  </div>
+
+  <div class="sec lead">
+    <div class="flag">The lead signal</div>
+    <h2>Can you count your agents?</h2>
+    <p>From 2nd August the high-risk provisions apply. If an agent touches a hiring decision, a credit file or an underwriting call, it now sits inside a regime with real penalties, and member states were required to have regulatory sandboxes running by this month.</p>
+    <p>SAP's LeanIX research, published this week, puts the gap in plain terms. 98% of companies have deployed AI agents or intend to, and fewer than half have visibility into an inventory of what they are running.</p>
+    <span class="src"><a href="https://news.sap.com/2026/08/agent-sprawl-why-ai-governance-is-now-board-level-issue/">SAP News Center, agent sprawl and board-level governance, August 2026</a></span>
+    <p>SAP calls the condition agent sprawl, where agents are created, deployed or connected across systems faster than the organisation can inventory them, assign ownership, control permissions, monitor behaviour or retire them when they no longer fit. That is shadow IT with a faster clock and a regulator attached.</p>
+    <p>Ask what a register actually has to answer, for every agent running today:</p>
+    <ul>
+      <li>Which systems it touches, and what data it can reach</li>
+      <li>Which decisions it can take without a human</li>
+      <li>Whose budget it sits on, and who approved it</li>
+      <li>What evidence it leaves behind for an auditor</li>
+      <li>Who has the authority to switch it off</li>
+    </ul>
+    <p>Most organisations can answer the first and stall somewhere around the third. That was survivable while agents were pilots. It stopped being survivable on Sunday.</p>
+    <p>The deadline has done something useful. It has turned an inventory job that nobody wanted into a board question, because you cannot demonstrate control of a decision you cannot trace back to an owner.</p>
+  </div>
+
+  <div class="pulse">
+    <div class="ptag">One-question pulse</div>
+    <p>This month we are measuring the Strategic Alignment driver of the Blueprint. Your answer joins the Blueprint Index, which we publish in the next issue.</p>
+    <div class="q">Can your board or executive team articulate your organisation's AI strategy in one sentence that would survive a 30-second explanation to a new hire?</div>
+    <div class="cta">Answer in 15 seconds, anonymous, no email: <a href="https://brief.craighortonadvisory.com/pulse">brief.craighortonadvisory.com/pulse</a></div>
+  </div>
+
+  <div class="office">
+    <div class="clabel">From my office</div>
+    <p>The AI Business Value Framework returns Accelerate, Fix or Stop, and governance risk can force a Stop on its own, ahead of any financial argument. That is deliberate, because a case that cannot name an owner has not finished being a case.</p>
+    <p>Every verdict carries its rules and its audit trail, so the reasoning survives the meeting it was made in and somebody can be held to it later.</p>
+    <p>The register question is the same question one level down. At initiative level you ask who owns the outcome. At agent level you ask who owns the decision, and the honest answer is usually that nobody has been asked to.</p>
+  </div>
+
+  <div class="sec">
+    <div class="flag">On the radar</div>
+    <div class="story"><div class="n">1</div><div><h3>The register is becoming a product</h3><p>Google moved Agent Identity and Agent Runtime to general availability this month on the Gemini Enterprise Agent Platform, giving each agent its own credential, scoping its permissions and logging every operation, with agent and model evaluations reaching general availability alongside.</p><p>That helps inside one platform. It does nothing for the agent somebody built in a different tool last quarter, which is exactly where sprawl lives.</p><span class="src"><a href="https://developers.googleblog.com/agent-and-model-evaluations-in-gemini-enterprise-agent-platform-are-now-ga/">Google Cloud, Gemini Enterprise Agent Platform, August 2026</a></span></div></div>
+    <div class="story"><div class="n">2</div><div><h3>A vendor starts charging only when the work is done</h3><p>Salesforce made pay-per-resolution generally available for the Agentforce Help Agent, at <b>$2 per autonomous resolution</b>, with no charge if the customer asks for a human, leaves negative feedback or abandons the conversation.</p><p>Outcome-based billing moves the vendor's revenue from seats sold to problems solved. The harder work arrives after the invoice, in agreeing what counts as resolved and who audits that definition.</p><span class="src"><a href="https://www.salesforceben.com/huge-agentforce-pricing-shift-salesforce-introduces-pay-per-resolution/">Salesforce, Agentforce Help Agent, generally available July 2026</a></span></div></div>
+    <div class="story"><div class="n">3</div><div><h3>Capability is starting to decide retention</h3><p>Gartner predicts that by 2027 half of enterprises without a people-centric AI strategy will lose their top AI talent to rivals.</p><p>This lands on the 70% that is people and organisational design. Leaders who file it under HR will watch their best people leave for the organisations that treated it as strategy.</p><span class="src"><a href="https://www.gartner.com/en/newsroom/press-releases/2026-05-13-gartner-predicts-by-2027-50-percent-of-enterprises-without-a-people-centric-ai-strategy-will-lose-their-top-ai-talent">Gartner, 13th May 2026</a></span></div></div>
+  </div>
+
+  <div class="qbox">
+    <div class="qtag">The question I would take into the room</div>
+    <div class="qtext">Before your next agent goes live, can you produce its register entry, the decisions it can take without a human, whose budget it sits on, the evidence it leaves behind, and the named person who can switch it off?</div>
+  </div>
+
+  <div class="foot">
+    <p>Once again, I appreciate your interest and time to read this brief, and as always, look forward to your feedback and comments. Enjoy your weekend, Craig</p>
+    <p style="margin-top:10px;">The Transformation Brief &nbsp;·&nbsp; <a href="https://brief.craighortonadvisory.com">brief.craighortonadvisory.com</a> &nbsp;·&nbsp; <a href="https://brief.craighortonadvisory.com/archive.html">Archive</a></p>
+  </div>
+
+</div>
+</body>
+</html>
