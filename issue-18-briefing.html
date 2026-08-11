@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Can you count your agents? | The Transformation Brief</title>
+<style>
+  :root{--navy:#1a2a47;--amber:#c97a2b;--amber-soft:#e2a358;--cream:#fafaf7;--ink:#26344c;--muted:#647087;--line:#d9dce2;--white:#fff}
+  *{box-sizing:border-box} body{margin:0;background:#eceef1;color:var(--ink);font-family:Arial,sans-serif;line-height:1.62;-webkit-font-smoothing:antialiased}
+  .mail{max-width:760px;margin:24px auto;background:var(--white);box-shadow:0 2px 16px rgba(26,42,71,.10)}
+  .top{background:var(--navy);color:var(--white);padding:30px 42px 28px;position:relative}.strip{position:absolute;top:0;left:0;right:0;height:5px;background:var(--amber)}
+  .adv{font-size:10pt;font-weight:600;color:var(--amber-soft);margin-bottom:20px}.name{font-family:Georgia,serif;font-size:31pt;font-weight:700;line-height:1;color:var(--white)}
+  .dateline{font-size:9pt;letter-spacing:.12em;color:var(--amber-soft);margin-top:10px}.sec{padding:25px 42px;border-bottom:1px solid var(--line)}
+  .greet .who{font-weight:700;color:var(--navy)}.greet .role{font-size:9pt;color:var(--amber);margin-bottom:12px}.greet p,.lead p,.radar p{font-size:10.5pt;margin:0 0 13px}
+  .flag{font-size:8.5pt;font-weight:700;letter-spacing:.12em;color:var(--amber);margin-bottom:10px}.lead h2{font-family:Georgia,serif;font-size:29pt;line-height:1.05;color:var(--navy);margin:0 0 16px}
+  .lead ul{margin:8px 0 16px;padding-left:20px}.lead li{font-size:10.5pt;margin:5px 0}.inside-visual{display:block;width:100%;height:auto;margin:20px 0 8px}.cap{font-size:8.5pt;color:var(--muted);line-height:1.5;margin-bottom:17px}
+  .radar .story{display:grid;grid-template-columns:35px 1fr;gap:12px;padding:17px 0;border-top:1px solid var(--line)}.radar .story:first-of-type{border-top:0}.radar .n{font-family:Georgia,serif;font-size:24pt;color:var(--amber);font-weight:700;line-height:1}
+  .radar h3{font-family:Georgia,serif;font-size:15pt;color:var(--navy);margin:0 0 7px}.radar a,.lead a{color:var(--amber);text-decoration:none;border-bottom:1px solid var(--amber-soft)}
+  .qbox{background:var(--navy);color:var(--white);padding:24px 28px;margin:24px 42px}.qtag{font-size:8.5pt;font-weight:700;color:var(--amber-soft);letter-spacing:.12em;margin-bottom:9px}.qtext{font-family:Georgia,serif;font-size:17pt;line-height:1.34}
+  .foot{background:var(--navy);color:var(--white);padding:21px 42px}.foot p{font-size:9pt;line-height:1.6;margin:0}.foot a{color:var(--amber-soft);text-decoration:none}.disclosure{color:#c6ccd6;margin-top:12px!important;font-size:8pt!important}
+  @media(max-width:620px){.mail{margin:0}.top,.sec,.foot{padding-left:22px;padding-right:22px}.qbox{margin-left:22px;margin-right:22px}.name{font-size:26pt}.lead h2{font-size:25pt}}
+  @media print{@page{size:A4;margin:0}body{background:#fff}.mail{width:210mm;max-width:none;margin:0;box-shadow:none}.top,.foot,.qbox{-webkit-print-color-adjust:exact;print-color-adjust:exact}.sec{break-inside:auto}.inside-visual{break-inside:avoid}.story{break-inside:avoid}}
+</style>
+</head>
+<body>
+<main class="mail">
+  <header class="top">
+    <div class="strip"></div>
+    <div class="adv">Craig Horton Advisory</div>
+    <div class="name">The Transformation Brief</div>
+    <div class="dateline">Issue 18 &middot; Friday 7 August 2026</div>
+  </header>
+
+  <section class="sec">
+    <div class="greet">
+      <div class="who">Craig Horton</div>
+      <div class="role">The Transformation Brief</div>
+      <p>Good morning, on Sunday the next provisions of the EU AI Act came into force, including transparency obligations for certain AI-generated content and the Commission's enforcement powers for general-purpose AI providers, with the high-risk rules covering employment, credit and other sensitive decisions now applying from 2 December 2027.</p>
+      <p>The extension gives leadership teams more time to prepare, although the agents already screening candidates, handling customer information and moving work between systems continue to operate today, which brings me back to something I have been asking for a while, can you count your agents?</p>
+    </div>
+  </section>
+
+  <section class="sec lead">
+    <div class="flag">The lead signal</div>
+    <h2>Can you count your agents?</h2>
+    <p><a href="https://www.leanix.net/en/download/agentic-ai-survey-2026">SAP LeanIX published research this week</a> covering 228 enterprise architects and IT decision-makers, with 44% of companies already deploying AI agents, 40% experimenting with them and another 14% planning to, yet only 17% have visibility of agent performance or conformance, while 48% have no clear roles or responsibilities for managing them.</p>
+    <p>SAP calls this agent sprawl, which happens when agents are created, deployed or connected across systems faster than the organisation can inventory them, assign ownership, control permissions, monitor their behaviour or retire them when they no longer fit.</p>
+    <p>We have seen this pattern before with shadow IT, except an agent can carry credentials, reach across systems, call other tools and take actions at a speed most approval processes were never designed to govern.</p>
+    <p>For every agent operating today, I would want its register to answer five questions:</p>
+    <ul>
+      <li>Which systems does it touch, and what data can it reach?</li>
+      <li>Which decisions can it take without a human?</li>
+      <li>Whose budget does it sit on, and who approved it?</li>
+      <li>What evidence does it leave behind for an auditor?</li>
+      <li>Who has the authority to restrict it or switch it off?</li>
+    </ul>
+    <img class="inside-visual" src="./images/visual-18-agent-register.png" alt="Five questions every AI agent register should answer">
+    <div class="cap">The five fields I would want completed before the next agent enters a live workflow.</div>
+    <p>Most organisations can name the platform and explain the task, then the answers become less clear when ownership, decision authority and evidence are discussed, especially when the agent crosses from one function into another and the outcome no longer belongs neatly to IT, HR, Legal or the business.</p>
+    <p>The delayed high-risk deadline has given organisations time to complete this work, and I would use that time to ask for the inventory, permissions, decision rights and named owners before the agent estate becomes too large for anyone to understand properly.</p>
+  </section>
+
+  <section class="sec radar">
+    <div class="flag">On the radar</div>
+    <div class="story"><div class="n">1</div><div><h3>Sandoz is preparing its managers for nearly 2,000 agents</h3><p><a href="https://www.unleash.ai/strategy-and-leadership/interview/adaptability-not-resilience-is-the-key-to-tripti-jha-s-leadership-strategy-for-change-here-s-why">Sandoz is implementing nearly 2,000 AI agents</a> across the business, while Chief People Officer Tripti Jha is building a common organisational language around AI, role-based certification and an AI Coach that helps managers prepare for important conversations.</p><p>Nearly 2,000 agents will change how work moves through the company, and its managers will have a large part in whether people understand the change, trust the work and know where their judgement still has authority.</p></div></div>
+    <div class="story"><div class="n">2</div><div><h3>One organisation has put real money behind change</h3><p><a href="https://news.sap.com/2026/08/ai-adoption-transformation-what-customers-report/">The Medical University of Lusatia</a>, a new organisation being built with EUR 3.6 billion in funding, has allocated 4.3% of its total budget to change management, making it the largest single line in its SAP contract.</p><p>I found this interesting because the budget covers the work around the system, including communication, learning, local ownership and support after go-live, with adoption funded as part of what the organisation is building from the beginning.</p></div></div>
+    <div class="story"><div class="n">3</div><div><h3>Policy is getting closer to the work</h3><p><a href="https://www.itpro.com/software/open-source/red-hat-launches-new-open-source-project-to-drive-ai-governance">Red Hat launched asago this week</a>, an open-source project designed to translate AI policies into risk tests, mitigations, runtime controls and an audit trail connecting individual requirements with evidence from the operation.</p><p>It is early and we still need to see how it performs in practice, although the direction makes sense to me, because organisations need to show how each policy becomes a control, how that control is tested and who owns the decision when an agent acts.</p></div></div>
+  </section>
+
+  <section class="qbox">
+    <div class="qtag">The question I would take into the room</div>
+    <div class="qtext">Before your next agent goes live, can you produce its register entry, show the decisions it can take without a human, name whose budget it sits on, explain the evidence it leaves behind and identify the person with the authority to switch it off?</div>
+  </section>
+
+  <footer class="foot">
+    <p>Once again, I appreciate your interest and time in reading this brief, and as always, I look forward to your feedback and comments. Enjoy your weekend, Craig</p>
+    <p class="disclosure">Written in a personal capacity using public sources. The views are my own and do not represent Pax8. No confidential customer, partner or company information has been used.</p>
+    <p style="margin-top:10px;">The Transformation Brief &middot; <a href="https://brief.craighortonadvisory.com">brief.craighortonadvisory.com</a> &middot; <a href="https://brief.craighortonadvisory.com/archive.html">Archive</a></p>
+  </footer>
+</main>
+</body>
+</html>
