@@ -72,6 +72,8 @@ linkedin/                   Paste-ready markdown for the LinkedIn newsletter edi
 images/                     Issue covers, inside visuals, personal photos.
 share-cbb65973c46c/         CV, cover letter, portfolio PDFs. Unlisted, disallowed in robots.txt.
 DEPLOY_PULSE.md             Full runbook for the pulse: migration, env vars, DNS, smoke test.
+PRODUCTION-STYLE.md         Scoring, drafting, and editing rules for the Brief and its posts —
+                            inlined from three Claude Code skills that don't live in this repo.
 vercel.json                 One host-based rewrite (pulse subdomain → /pulse/).
 robots.txt                  Disallows /epam/ and /share-cbb65973c46c/.
 ```
@@ -192,10 +194,18 @@ Craig's own voice, and the site is written in it throughout. Observable rules:
 - Commits are short sentence-case imperatives: "Publish Issue 18 archive entry",
   "Add Issue 17 cover image".
 
-A repo-adjacent Claude skill set (`transformation-brief`, `brief-sharpen`,
-`what-i-hate`) encodes this in more detail; those live in Craig's Claude
-configuration, not in this repo, so a model without them should lean on the
-published issues as the style reference.
+That's the pattern as observed in the shipped output. The actual editorial
+machinery that produces it — how an article gets scored before it's worth
+writing about, the exact structure a daily post or weekly issue follows, the
+seven-check pass a draft has to survive before it ships, and the full banned
+words/phrases/patterns list — lived in three Claude Code skills
+(`transformation-brief`, `brief-sharpen`, `what-i-hate`) that aren't part of
+this repo and won't be visible to a different tool. **`PRODUCTION-STYLE.md`
+inlines all three, verbatim, for exactly that reason** — read it before
+drafting or editing anything for the Brief or LinkedIn. It also documents a
+live conflict worth knowing about: the old skill docs specify a different
+brand palette and Title Case headings than what the site actually uses now
+— `PRODUCTION-STYLE.md` §6 has the resolution.
 
 ## 9. Working on this repo
 
@@ -231,8 +241,11 @@ None of these are broken, but a new owner should know about them:
 > I'm continuing work on `transformation-brief-site`, a hand-written static site
 > (no build step) on Vercel with two Supabase-backed serverless functions. The
 > attached HANDOFF.md is the full context: repo map, the two design systems, the
-> weekly newsletter production loop, the backend contract, house style, and the
-> known open items. Read it first, then [your task].
+> weekly newsletter production loop, the backend contract, and the known open
+> items. If the task involves writing or editing anything for the Brief or
+> LinkedIn, also read the attached PRODUCTION-STYLE.md first — it has the full
+> scoring criteria, drafting templates, the pre-publish sharpening checklist,
+> and the complete banned-words/style rules. Read these first, then [your task].
 
-If the model can run commands, add: *check HANDOFF.md against the working tree
-before trusting it, and update it if it has drifted.*
+If the model can run commands, add: *check both files against the working tree
+before trusting them, and update whichever has drifted.*
