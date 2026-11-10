@@ -3,13 +3,13 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>The End of the Org Chart | Craig Horton Advisory</title>
+<title>The End of the Org Chart | Craig Horton</title>
 <meta name="description" content="A paper on the Human-Agent Operating Model, how the human-agent operating model extends a 100-year arc from Taylor to Hamel. Craig Horton, April 2026.">
 <meta name="author" content="Craig Horton">
 <meta property="og:type" content="article">
 <meta property="og:title" content="The End of the Org Chart">
-<meta property="og:description" content="How the human-agent operating model extends a 100-year arc from Taylor to Hamel. A thought leadership paper from Craig Horton Advisory.">
-<meta property="og:site_name" content="Craig Horton Advisory">
+<meta property="og:description" content="How the human-agent operating model extends a 100-year arc from Taylor to Hamel. A paper by Craig Horton.">
+<meta property="og:site_name" content="Craig Horton">
 <meta property="og:url" content="https://craighortonadvisory.com/end-of-the-org-chart.html">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="The End of the Org Chart">
@@ -18,7 +18,6 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet">
 <style>
   *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
@@ -27,14 +26,14 @@
     --navy-deep: #121f36;
     --amber: #c97a2b;
     --amber-soft: #e2a358;
-    --cream: #fafaf7;
+    --paper: #ffffff;
     --white: #ffffff;
     --hairline: rgba(26, 42, 71, 0.18);
   }
 
   html, body {
     font-family: 'Inter', -apple-system, Arial, sans-serif;
-    background: var(--cream);
+    background: var(--paper);
     color: var(--navy);
     line-height: 1.6;
     -webkit-font-smoothing: antialiased;
@@ -53,7 +52,6 @@
   .site-nav .container { max-width: 1120px; }
   .site-nav .nav { display: flex; justify-content: space-between; align-items: center; padding: 22px 0; }
   .site-nav .nav-brand { font-family: 'Inter', sans-serif; font-weight: 600; font-size: 13pt; color: white; border: none; text-decoration: none; }
-  .site-nav .nav-brand .advisory { color: var(--amber-soft); font-family: 'Cormorant Garamond', Georgia, serif; font-weight: 500; }
   .site-nav .nav-brand:hover { color: white; border: none; }
   .site-nav .nav-links { display: flex; gap: 30px; align-items: center; }
   .site-nav .nav-links a { font-family: 'Inter', sans-serif; font-weight: 500; font-size: 10.5pt; color: white; border: none; letter-spacing: 0.02em; padding: 4px 0; border-bottom: 2px solid transparent; text-decoration: none; }
@@ -92,11 +90,6 @@
     color: white;
     letter-spacing: 0.01em;
     margin-bottom: 56px;
-  }
-  .masthead .wordmark .advisory {
-    color: var(--amber-soft);
-    font-family: 'Cormorant Garamond', Georgia, serif;
-    font-weight: 500;
   }
   .masthead .paper-kicker {
     font-family: 'Inter', Arial, sans-serif;
@@ -404,7 +397,7 @@
     min-height: 200px;
   }
   .mode-card.accent {
-    background: var(--cream);
+    background: var(--paper);
     border-color: var(--amber);
     border-left-width: 4px;
   }
@@ -551,7 +544,7 @@
   .void {
     margin: 24px 0 32px;
     padding: 20px 28px;
-    background: var(--cream);
+    background: var(--paper);
     border-left: 2px solid var(--amber);
     max-width: 720px;
   }
@@ -589,7 +582,7 @@
     flex-direction: column;
   }
   .phase.amber {
-    background: var(--cream);
+    background: var(--paper);
   }
   .phase.navy {
     background: var(--navy);
@@ -656,7 +649,7 @@
 
   /* ============ REFRAME ============ */
   .reframe {
-    background: var(--cream);
+    background: var(--paper);
     padding: 120px 0;
     position: relative;
     border-top: 1px solid var(--hairline);
@@ -812,6 +805,11 @@
     border-bottom-color: white;
   }
 
+
+  /* Personal site navigation, links stay visible on small screens */
+  :root .nav { flex-wrap: wrap; gap: 8px 24px; }
+  :root .nav .nav-links { flex-wrap: wrap; gap: 6px 22px; }
+  @media (max-width: 900px) { :root .nav .nav-links a:not(.cta) { display: inline-block; } }
 </style>
 </head>
 <body>
@@ -821,15 +819,12 @@
   <div class="accent-strip"></div>
   <div class="container">
     <nav class="nav">
-      <a href="./index.html" class="nav-brand">Craig Horton <span class="advisory">Advisory</span></a>
+      <a href="./index.html" class="nav-brand">Craig Horton</a>
       <div class="nav-links">
-        <a href="./">The Brief</a>
-        <a href="./end-of-the-org-chart.html">Thinking</a>
-        <a href="./diagnostic.html">Diagnostic</a>
-        <a href="./workflow-coroner.html">Workflow Coroner</a>
-        <a href="https://bvf.craighortonadvisory.com/?code=bvf2026">AI BVF</a>
+        <a href="./index.html">Home</a>
+        <a href="./archive.html">The Transformation Brief</a>
+        <a href="./work.html">Work</a>
         <a href="./about.html">About</a>
-        <a href="" class="cta" onclick="Calendly.initPopupWidget({url:'https://calendly.com/craigmds1/new-meeting?primary_color=c97a2b&text_color=1a2a47&background_color=fafaf7&hide_gdpr_banner=1'});return false;">Get in Touch</a>
       </div>
     </nav>
   </div>
@@ -840,12 +835,11 @@
   <div class="accent-strip"></div>
   <div class="glow"></div>
   <div class="container masthead-inner">
-    <div class="wordmark">Craig Horton <span class="advisory">Advisory</span></div>
     <div class="paper-kicker">A Paper on the Human-Agent Operating Model</div>
     <h1>The End of the Org Chart</h1>
     <p class="subtitle">How the human-agent operating model extends a 100-year arc from Taylor to Hamel.</p>
     <div class="byline">
-      <span>By Craig Horton, AI Transformation Advisor</span>
+      <span>By Craig Horton</span>
       <span>April 2026 &nbsp;·&nbsp; craighortonadvisory.com</span>
     </div>
   </div>
@@ -1219,20 +1213,18 @@
 
     <div class="author-block">
       <div class="author-tag">About the Author</div>
-      <p>Craig Horton is an AI Transformation Advisor and the builder of aibvf-mcp, the open Model Context Protocol server for scoring AI initiatives, published to the registry in April 2026. He publishes The Transformation Brief, a weekly intelligence product for senior leaders navigating AI transformation. He holds an Executive Leadership distinction from Saïd Business School, University of Oxford, and begins a Global Executive MBA with Artificial Intelligence at the University of Hertfordshire in May 2026.</p>
+      <p>Craig Horton is the builder of aibvf-mcp, the open Model Context Protocol server for scoring AI initiatives, published to the registry in April 2026. He publishes The Transformation Brief, a weekly intelligence product for senior leaders navigating AI transformation. He holds an Executive Leadership distinction from Saïd Business School, University of Oxford, and is studying for a Global Executive MBA with Artificial Intelligence at the University of Hertfordshire.</p>
     </div>
 
     <div class="colophon">
       <a href="https://brief.craighortonadvisory.com">brief.craighortonadvisory.com</a> &nbsp;·&nbsp;
-      <a href="https://linkedin.com/in/craig-horton-ai">linkedin.com/in/craig-horton-ai</a> &nbsp;·&nbsp;
       <a href="https://github.com/Craig-Horton/ai-bvf">github.com/Craig-Horton/ai-bvf</a>
       <br/>
-      &copy; 2026 Craig Horton Advisory. All rights reserved.
+      &copy; 2026 Craig Horton. All rights reserved.
     </div>
   </div>
 </footer>
 
-<script src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript" async></script>
 
 <script defer src="/_vercel/insights/script.js"></script>
 </body>

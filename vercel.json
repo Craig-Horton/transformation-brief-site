@@ -4,8 +4,23 @@
       "source": "/",
       "destination": "/pulse/",
       "has": [
-        { "type": "host", "value": "pulse.craighortonadvisory.com" }
+        {
+          "type": "host",
+          "value": "pulse.craighortonadvisory.com"
+        }
       ]
+    }
+  ],
+  "redirects": [
+    {
+      "source": "/contact.html",
+      "destination": "/",
+      "permanent": false
+    },
+    {
+      "source": "/contact",
+      "destination": "/",
+      "permanent": false
     }
   ]
 }
