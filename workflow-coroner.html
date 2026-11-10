@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Workflow Coroner | Craig Horton Advisory</title>
+<title>Workflow Coroner | Craig Horton</title>
 <meta name="description" content="Open-source agent pipeline that reads Celonis-shaped event logs, scores against the AI Business Value Framework, and emits MuleSoft Anypoint calls. End-to-end runnable today, live API adapter on the build path.">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Workflow Coroner, the Stop-first AI BVF agent pipeline">
@@ -13,7 +13,6 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet">
 <style>
   *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
   :root {
@@ -21,12 +20,12 @@
     --navy-deep: #121f36;
     --amber: #c97a2b;
     --amber-soft: #e2a358;
-    --cream: #fafaf7;
+    --paper: #ffffff;
     --hairline: rgba(26, 42, 71, 0.18);
   }
   html, body {
     font-family: 'Inter', -apple-system, Arial, sans-serif;
-    background: var(--cream);
+    background: var(--paper);
     color: var(--navy);
     line-height: 1.6;
     -webkit-font-smoothing: antialiased;
@@ -43,7 +42,6 @@
   .site-nav .accent-strip { position: absolute; top: 0; left: 0; right: 0; height: 4px; background: linear-gradient(90deg, var(--amber) 0%, var(--amber-soft) 100%); }
   .site-nav .nav { display: flex; justify-content: space-between; align-items: center; padding: 22px 0; }
   .nav-brand { font-family: 'Inter', sans-serif; font-weight: 600; font-size: 13pt; color: white; border: none; }
-  .nav-brand .advisory { color: var(--amber-soft); font-family: 'Cormorant Garamond', Georgia, serif; font-weight: 500; }
   .nav-brand:hover { color: white; border: none; }
   .nav-links { display: flex; gap: 30px; align-items: center; }
   .nav-links a { font-family: 'Inter', sans-serif; font-weight: 500; font-size: 10.5pt; color: white; border: none; letter-spacing: 0.02em; padding: 4px 0; border-bottom: 2px solid transparent; }
@@ -68,7 +66,6 @@
   .masthead .glow { position: absolute; top: -200px; right: -200px; width: 700px; height: 700px; background: radial-gradient(circle, rgba(226, 163, 88, 0.25) 0%, transparent 60%); pointer-events: none; }
   .masthead-inner { position: relative; z-index: 2; }
   .masthead .wordmark { font-family: 'Inter', Arial, sans-serif; font-weight: 600; font-size: 14pt; color: white; letter-spacing: 0.01em; margin-bottom: 56px; }
-  .masthead .wordmark .advisory { color: var(--amber-soft); font-family: 'Cormorant Garamond', Georgia, serif; font-weight: 500; }
   .masthead .paper-kicker { font-family: 'Inter', Arial, sans-serif; font-weight: 700; font-size: 10pt; color: var(--amber-soft); letter-spacing: 0.32em; margin-bottom: 24px; }
   .masthead h1 { font-family: 'Cormorant Garamond', Georgia, serif; font-weight: 700; font-size: 72pt; line-height: 0.98; letter-spacing: -0.028em; color: white; margin-bottom: 32px; }
   @media (max-width: 700px) {
@@ -86,7 +83,7 @@
   .masthead .byline { font-family: 'Inter', Arial, sans-serif; font-weight: 500; font-size: 10pt; color: white; letter-spacing: 0.04em; padding-top: 32px; border-top: 1px solid rgba(255,255,255,0.2); display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px; }
 
   /* Stats stripe */
-  .stats-stripe { background: var(--cream); padding: 48px 0; border-bottom: 1px solid var(--hairline); }
+  .stats-stripe { background: var(--paper); padding: 48px 0; border-bottom: 1px solid var(--hairline); }
   .stats-stripe .stats-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 36px; max-width: 980px; }
   @media (max-width: 700px) { .stats-stripe .stats-grid { grid-template-columns: 1fr; gap: 22px; } }
   .stats-stripe .stat-num { font-family: 'Cormorant Garamond', Georgia, serif; font-weight: 700; font-size: 36pt; color: var(--amber); line-height: 1; margin-bottom: 8px; letter-spacing: -0.02em; }
@@ -95,7 +92,7 @@
   /* Body sections */
   section.body { padding: 80px 0; }
   section.body + section.body { border-top: 1px solid var(--hairline); }
-  section.body.cream-bg { background: var(--cream); }
+  section.body.plain-bg { background: var(--paper); }
   section.body.white-bg { background: white; }
   .section-kicker { font-family: 'Inter', sans-serif; font-weight: 700; font-size: 10pt; color: var(--amber); letter-spacing: 0.32em; margin-bottom: 18px; }
   .section-head { font-family: 'Cormorant Garamond', Georgia, serif; font-weight: 600; font-size: 36pt; line-height: 1.1; color: var(--navy); letter-spacing: -0.02em; margin-bottom: 28px; max-width: 820px; }
@@ -152,7 +149,7 @@
   .score-cta .btn-secondary:hover { background: var(--amber); color: white; border-color: var(--amber); }
 
   /* Coroner interactive */
-  .coroner-run { padding: 80px 0; background: var(--cream); border-top: 1px solid var(--hairline); }
+  .coroner-run { padding: 80px 0; background: var(--paper); border-top: 1px solid var(--hairline); }
   .coroner-empty { max-width: 720px; }
   .empty-actions { display: flex; gap: 14px; flex-wrap: wrap; margin-top: 24px; }
   .empty-actions a { display: inline-block; padding: 13px 24px; border: 1px solid var(--amber); font-family: 'Inter', sans-serif; font-weight: 700; font-size: 10.5pt; letter-spacing: 0.07em; }
@@ -185,7 +182,7 @@
   .co-tag { font-family: 'Inter', sans-serif; font-weight: 700; font-size: 10pt; color: var(--amber); letter-spacing: 0.26em; margin-bottom: 12px; }
   .co-ruling { font-family: 'Cormorant Garamond', Georgia, serif; font-weight: 700; font-size: 32pt; line-height: 1; margin-bottom: 14px; }
   .co-line { font-family: 'Inter', sans-serif; font-size: 12pt; line-height: 1.6; color: var(--navy); margin-bottom: 22px; }
-  .co-pillars { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; padding: 16px 18px; background: var(--cream); margin-bottom: 18px; }
+  .co-pillars { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; padding: 16px 18px; background: var(--paper); margin-bottom: 18px; }
   @media (max-width: 700px) { .co-pillars { grid-template-columns: 1fr 1fr; } }
   .co-pillar-name { font-family: 'Inter', sans-serif; font-weight: 600; font-size: 9pt; color: rgba(26,42,71,0.65); letter-spacing: 0.04em; margin-bottom: 6px; }
 
@@ -215,7 +212,7 @@
   .run-card .label { font-family: 'Inter', sans-serif; font-weight: 700; font-size: 9pt; color: var(--amber); letter-spacing: 0.26em; margin-bottom: 8px; }
   .run-card .head { font-family: 'Cormorant Garamond', Georgia, serif; font-weight: 600; font-size: 18pt; line-height: 1.2; color: var(--navy); margin-bottom: 6px; }
   .run-card .body { font-family: 'Inter', sans-serif; font-size: 11pt; line-height: 1.6; color: var(--navy); margin-bottom: 10px; }
-  .run-card code { font-family: 'Cascadia Code', Consolas, monospace; font-size: 10pt; background: var(--cream); padding: 2px 8px; border-radius: 2px; color: var(--navy); border: 1px solid var(--hairline); }
+  .run-card code { font-family: 'Cascadia Code', Consolas, monospace; font-size: 10pt; background: var(--paper); padding: 2px 8px; border-radius: 2px; color: var(--navy); border: 1px solid var(--hairline); }
 
   /* Contact CTA */
   .contact-cta { background: var(--navy); color: white; padding: 80px 0; position: relative; overflow: hidden; text-align: center; }
@@ -233,6 +230,11 @@
   .footer .container { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 16px; }
   .footer a { color: var(--amber-soft); border-bottom: 1px solid var(--amber-soft); }
   .footer a:hover { color: white; border-color: white; }
+
+  /* Personal site navigation, links stay visible on small screens */
+  :root .nav { flex-wrap: wrap; gap: 8px 24px; }
+  :root .nav .nav-links { flex-wrap: wrap; gap: 6px 22px; }
+  @media (max-width: 900px) { :root .nav .nav-links a:not(.cta) { display: inline-block; } }
 </style>
 </head>
 <body>
@@ -241,15 +243,12 @@
   <div class="accent-strip"></div>
   <div class="container">
     <nav class="nav">
-      <a href="./index.html" class="nav-brand plain">Craig Horton <span class="advisory">Advisory</span></a>
+      <a href="./index.html" class="nav-brand plain">Craig Horton</a>
       <div class="nav-links">
-        <a href="./">The Brief</a>
-        <a href="./end-of-the-org-chart.html">Thinking</a>
-        <a href="./diagnostic.html">Diagnostic</a>
-        <a href="./workflow-coroner.html" aria-current="page">Workflow Coroner</a>
-        <a href="https://bvf.craighortonadvisory.com/?code=bvf2026">AI BVF</a>
+        <a href="./index.html">Home</a>
+        <a href="./archive.html">The Transformation Brief</a>
+        <a href="./work.html">Work</a>
         <a href="./about.html">About</a>
-        <a href="./contact.html" class="cta" onclick="if(window.Calendly){Calendly.initPopupWidget({url:'https://calendly.com/craigmds1/new-meeting?primary_color=c97a2b&text_color=1a2a47&background_color=fafaf7&hide_gdpr_banner=1'});return false;}">Get in Touch</a>
       </div>
     </nav>
   </div>
@@ -259,7 +258,6 @@
   <div class="accent-strip"></div>
   <div class="glow"></div>
   <div class="container masthead-inner">
-    <div class="wordmark">Craig Horton <span class="advisory">Advisory</span></div>
     <div class="paper-kicker">An agent pipeline built on the AI BVF</div>
     <h1>The Workflow Coroner</h1>
     <p class="subtitle">Stop the wrong work before AI automates it. An open-source agent pipeline that reads Celonis-shaped event logs, scores against the AI Business Value Framework, and emits MuleSoft Anypoint calls when the ruling is Stop.</p>
@@ -268,7 +266,7 @@
       <a href="#technical-pipeline" class="secondary">Inspect the pipeline</a>
     </div>
     <div class="byline">
-      <span>By Craig Horton, AI Transformation Advisor</span>
+      <span>By Craig Horton</span>
       <span>May 2026 &nbsp;&middot;&nbsp; brief.craighortonadvisory.com</span>
     </div>
   </div>
@@ -305,7 +303,7 @@
   </div>
 </section>
 
-<section class="body cream-bg">
+<section class="body plain-bg">
   <div class="container">
     <div class="section-kicker">how it sits with the AI BVF</div>
     <h2 class="section-head">Phase 2 of the AI BVF, the workflow pipeline.</h2>
@@ -368,7 +366,7 @@
   </div>
 </section>
 
-<section class="body cream-bg">
+<section class="body plain-bg">
   <div class="container">
     <div class="section-kicker">two verdicts shipped</div>
     <h2 class="section-head">Same engine, opposite verdicts.</h2>
@@ -783,7 +781,7 @@
   }
 
   function fmtEUR(n) {
-    if (!isFinite(n)) return '—';
+    if (!isFinite(n)) return '-';
     var abs = Math.abs(n);
     if (abs >= 1e9) return '€' + (n/1e9).toFixed(2) + 'bn';
     if (abs >= 1e6) return '€' + (n/1e6).toFixed(1) + 'm';
@@ -989,7 +987,7 @@
   </div>
 </section>
 
-<section class="body cream-bg">
+<section class="body plain-bg">
   <div class="container">
     <div class="section-kicker">the build path</div>
     <h2 class="section-head">Twelve weeks, milestone-shaped.</h2>
@@ -1054,28 +1052,16 @@
   </div>
 </section>
 
-<section class="contact-cta">
-  <div class="glow"></div>
-  <div class="inner container">
-    <div class="kicker">A conversation, not a pitch</div>
-    <h2>Want to run the Coroner against your own Celonis export?</h2>
-    <p>Thirty minutes on the calendar, you bring the workflow data shape, I bring the AI BVF and an honest verdict. No deck, no pitch, the engine does the work.</p>
-    <a href="./contact.html" class="btn" onclick="if(window.Calendly){Calendly.initPopupWidget({url:'https://calendly.com/craigmds1/new-meeting?primary_color=c97a2b&text_color=1a2a47&background_color=fafaf7&hide_gdpr_banner=1'});return false;}">Book a Call</a>
-  </div>
-</section>
-
 <footer class="footer">
   <div class="container">
-    <div>Craig Horton <strong style="color: var(--amber-soft); font-family: 'Cormorant Garamond', serif; font-weight: 500;">Advisory</strong>  ·  AI Transformation, Enterprise Strategy, Change Management</div>
+    <div>Craig Horton</div>
     <div>
-      <a href="https://linkedin.com/in/craig-horton-ai">LinkedIn</a>  ·
       <a href="https://github.com/Craig-Horton/ai-bvf">GitHub</a>  ·
       <a href="./index.html">Home</a>
     </div>
   </div>
 </footer>
 
-<script src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript" async></script>
 
 <script defer src="/_vercel/insights/script.js"></script>
 </body>

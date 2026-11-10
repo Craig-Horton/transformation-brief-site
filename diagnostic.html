@@ -3,11 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>The Human-Agent Operating Model Diagnostic | Craig Horton Advisory</title>
+<title>The Human-Agent Operating Model Diagnostic | Craig Horton</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet">
 <style>
   *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
@@ -16,7 +15,7 @@
     --navy-deep: #121f36;
     --amber: #c97a2b;
     --amber-soft: #e2a358;
-    --cream: #fafaf7;
+    --paper: #ffffff;
     --white: #ffffff;
     --hairline: rgba(26, 42, 71, 0.18);
     --hairline-strong: rgba(26, 42, 71, 0.32);
@@ -28,7 +27,6 @@
   .site-nav .nav-inner { max-width: 1120px; margin: 0 auto; padding: 0 32px; }
   .site-nav .nav { display: flex; justify-content: space-between; align-items: center; padding: 22px 0; }
   .site-nav .nav-brand { font-family: 'Inter', sans-serif; font-weight: 600; font-size: 13pt; color: white; border: none; text-decoration: none; }
-  .site-nav .nav-brand .advisory { color: var(--amber-soft); font-family: 'Cormorant Garamond', Georgia, serif; font-weight: 500; }
   .site-nav .nav-links { display: flex; gap: 30px; align-items: center; }
   .site-nav .nav-links a { font-family: 'Inter', sans-serif; font-weight: 500; font-size: 10.5pt; color: white; border-bottom: 2px solid transparent; letter-spacing: 0.02em; padding: 4px 0; text-decoration: none; }
   .site-nav .nav-links a:hover { color: white; border-bottom-color: var(--amber); }
@@ -38,7 +36,7 @@
 
   html, body {
     font-family: 'Inter', -apple-system, Arial, sans-serif;
-    background: var(--cream);
+    background: var(--paper);
     color: var(--navy);
     line-height: 1.6;
     -webkit-font-smoothing: antialiased;
@@ -82,11 +80,6 @@
     color: white;
     letter-spacing: 0.01em;
     margin-bottom: 40px;
-  }
-  .masthead .wordmark .advisory {
-    color: var(--amber-soft);
-    font-family: 'Cormorant Garamond', Georgia, serif;
-    font-weight: 500;
   }
   .masthead .kicker {
     font-family: 'Inter', Arial, sans-serif;
@@ -184,7 +177,7 @@
     min-height: 170px;
   }
   .mode-box.mode-3 {
-    background: var(--cream);
+    background: var(--paper);
     box-shadow: inset 0 3px 0 var(--amber);
   }
   .mode-box.mode-4 {
@@ -351,11 +344,11 @@
   }
   .option:hover {
     border-color: var(--amber);
-    background: var(--cream);
+    background: var(--paper);
   }
   .option.selected {
     border-color: var(--amber);
-    background: var(--cream);
+    background: var(--paper);
     box-shadow: inset 3px 0 0 var(--amber);
     padding-left: 11px;
   }
@@ -532,7 +525,7 @@
 
   /* Reframe box */
   .reframe-box {
-    background: var(--cream);
+    background: var(--paper);
     border-left: 3px solid var(--amber);
     padding: 28px 32px;
     margin-top: 24px;
@@ -667,11 +660,6 @@
     letter-spacing: 0.01em;
     margin-bottom: 12px;
   }
-  .footer .wordmark .advisory {
-    color: var(--amber-soft);
-    font-family: 'Cormorant Garamond', Georgia, serif;
-    font-weight: 500;
-  }
   .footer p {
     font-family: 'Inter', Arial, sans-serif;
     font-size: 9.5pt;
@@ -773,7 +761,7 @@
       page-break-inside: avoid;
     }
     .option.selected {
-      background: var(--cream) !important;
+      background: var(--paper) !important;
       border-color: var(--amber) !important;
       box-shadow: inset 3px 0 0 var(--amber) !important;
     }
@@ -804,6 +792,11 @@
     .footer h3 { font-size: 18pt !important; }
     .footer .copy { font-size: 8pt !important; }
   }
+
+  /* Personal site navigation, links stay visible on small screens */
+  :root .nav { flex-wrap: wrap; gap: 8px 24px; }
+  :root .nav .nav-links { flex-wrap: wrap; gap: 6px 22px; }
+  @media (max-width: 900px) { :root .nav .nav-links a:not(.cta) { display: inline-block; } }
 </style>
 </head>
 <body>
@@ -813,15 +806,12 @@
   <div class="accent-strip-nav"></div>
   <div class="nav-inner">
     <nav class="nav">
-      <a href="./index.html" class="nav-brand">Craig Horton <span class="advisory">Advisory</span></a>
+      <a href="./index.html" class="nav-brand">Craig Horton</a>
       <div class="nav-links">
-        <a href="./">The Brief</a>
-        <a href="./end-of-the-org-chart.html">Thinking</a>
-        <a href="./diagnostic.html">Diagnostic</a>
-        <a href="./workflow-coroner.html">Workflow Coroner</a>
-        <a href="https://bvf.craighortonadvisory.com/?code=bvf2026">AI BVF</a>
+        <a href="./index.html">Home</a>
+        <a href="./archive.html">The Transformation Brief</a>
+        <a href="./work.html">Work</a>
         <a href="./about.html">About</a>
-        <a href="" class="cta" onclick="Calendly.initPopupWidget({url:'https://calendly.com/craigmds1/new-meeting?primary_color=c97a2b&text_color=1a2a47&background_color=fafaf7&hide_gdpr_banner=1'});return false;">Get in Touch</a>
       </div>
     </nav>
   </div>
@@ -832,7 +822,6 @@
   <div class="accent-strip"></div>
   <div class="glow"></div>
   <div class="masthead-inner">
-    <div class="wordmark">Craig Horton <span class="advisory">Advisory</span></div>
     <div class="kicker">The Diagnostic</div>
     <h1>The Human-Agent Operating Model Diagnostic</h1>
     <p class="subtitle">Eight dimensions, four modes, one honest score. Where does your organisation actually sit on the spectrum from legacy hierarchy to agentic, and where should it be by the end of this year?</p>
@@ -1164,11 +1153,11 @@
 
 <!-- ============ FOOTER ============ -->
 <footer class="footer">
-  <div class="wordmark">Craig Horton <span class="advisory">Advisory</span></div>
+  <div class="wordmark">Craig Horton</div>
   <p>The Human-Agent Operating Model Diagnostic, from The Transformation Brief.</p>
   <p>Built on research from McKinsey, Deloitte, Gartner, BCG, Hamel, and real-world deployment evidence.</p>
   <p style="margin-top: 12px;"><a href="https://brief.craighortonadvisory.com">brief.craighortonadvisory.com</a></p>
-  <p class="copy">&copy; 2026 Craig Horton Advisory. All rights reserved.</p>
+  <p class="copy">&copy; 2026 Craig Horton. All rights reserved.</p>
 </footer>
 
 <script>
@@ -1350,7 +1339,6 @@ function resetDiagnostic() {
 }
 </script>
 
-<script src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript" async></script>
 
 <script defer src="/_vercel/insights/script.js"></script>
 </body>
