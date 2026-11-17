@@ -1,0 +1,44 @@
+{
+  "issue": 18,
+  "date": "Friday 7th August 2026",
+  "cover": {
+    "file": "issue-18-cover.png",
+    "title": [
+      "Can you count",
+      "your agents?"
+    ],
+    "standfirst": "This issue asks a simple operating question,",
+    "standfirstStrong": "can you name what each agent can touch, decide, evidence and switch off?"
+  },
+  "graphic": {
+    "file": "visual-18-agent-register.png",
+    "label": "Decision graphic",
+    "kicker": "Before the next agent goes live",
+    "title": "An agent register should answer five questions",
+    "subtitle": "A board cannot govern an agent it cannot trace to a system, a decision and a named owner.",
+    "steps": [
+      {
+        "head": "Systems and data",
+        "text": "Which systems does it touch, and what data can it reach?"
+      },
+      {
+        "head": "Decision authority",
+        "text": "Which decisions can it take without a human?"
+      },
+      {
+        "head": "Budget and approval",
+        "text": "Whose budget does it sit on, and who approved it?"
+      },
+      {
+        "head": "Evidence",
+        "text": "What does it leave behind for an auditor?"
+      },
+      {
+        "head": "Switch-off authority",
+        "text": "Who can restrict or stop it when the work goes wrong?"
+      }
+    ],
+    "calloutLabel": "The register entry",
+    "callout": "One agent, one record, one named owner with the authority to act."
+  }
+}
