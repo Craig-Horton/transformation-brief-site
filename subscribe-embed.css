@@ -1,0 +1,26 @@
+/* Self-contained sign-up block for the pages that carry their own styles
+   (diagnostic, paper, Workflow Coroner and the issue briefings). Pages built
+   on site.css use the .subscribe section instead. */
+.brief-signup { background: #1a2a47; color: #ffffff; padding: 40px 32px; font-family: 'Inter', -apple-system, 'Segoe UI', Arial, sans-serif; text-align: left; scroll-margin-top: 24px; }
+.brief-signup .bs-inner { max-width: 720px; margin: 0 auto; }
+.brief-signup .bs-kicker { font-family: inherit; font-weight: 600; font-size: 13px; line-height: 1.4; letter-spacing: 0.16em; text-transform: none; color: #e2a358; margin: 0 0 10px; padding: 0; border: none; }
+.brief-signup .bs-title { font-family: 'Cormorant Garamond', Georgia, serif; font-weight: 600; font-size: 30px; line-height: 1.16; letter-spacing: -0.008em; text-transform: none; color: #ffffff; margin: 0 0 10px; padding: 0; border: none; }
+.brief-signup .bs-text { font-family: inherit; font-size: 16px; line-height: 1.55; color: #ffffff; margin: 0; padding: 0; max-width: 640px; }
+.brief-signup .subscribe-form { display: flex; flex-wrap: wrap; gap: 12px; margin: 22px 0 12px; padding: 0; max-width: 560px; }
+.brief-signup .subscribe-form input { flex: 1 1 240px; min-width: 0; font-family: inherit; font-size: 16px; line-height: 1.3; padding: 13px 14px; border: 1px solid rgba(255, 255, 255, 0.22); background: #ffffff; color: #1a2a47; border-radius: 0; margin: 0; }
+.brief-signup .subscribe-form button { font-family: inherit; font-weight: 600; font-size: 15px; line-height: 1.3; letter-spacing: 0; text-transform: none; padding: 13px 22px; background: #c97a2b; color: #ffffff; border: none; border-radius: 0; cursor: pointer; margin: 0; }
+.brief-signup .subscribe-form button:hover { background: #e2a358; color: #1a2a47; }
+.brief-signup .subscribe-form button:disabled { opacity: 0.6; cursor: default; }
+.brief-signup .subscribe-form input:focus-visible, .brief-signup .subscribe-form button:focus-visible { outline: 2px solid #e2a358; outline-offset: 3px; }
+.brief-signup .subscribe-status { min-height: 24px; font-family: inherit; font-size: 15px; font-weight: 500; line-height: 1.5; color: #e2a358; margin: 0 0 6px; padding: 0; }
+.brief-signup .subscribe-hint { font-family: inherit; font-size: 14px; line-height: 1.5; color: #ffffff; margin: 0; padding: 0; }
+.brief-signup .subscribe-hint a, .brief-signup .bs-text a { color: #e2a358; text-decoration: none; border-bottom: 1px solid #e2a358; }
+.brief-signup .subscribe-hint a:hover, .brief-signup .bs-text a:hover { color: #ffffff; border-bottom-color: #ffffff; }
+@media (max-width: 620px) { .brief-signup { padding: 32px 22px; } .brief-signup .bs-title { font-size: 26px; } }
+/* The briefing pages are also printed to PDF, the form has no place there. */
+@media print { .brief-signup { display: none !important; } }
+/* Inside a footer that already has the navy ground and its own pitch */
+.brief-signup.bs-bare { background: transparent; padding: 0; margin: 0 0 48px; }
+.brief-signup.bs-bare .bs-inner { max-width: none; margin: 0; }
+/* Directly above a navy footer: join the two bands */
+.brief-signup + .footer, .brief-signup + footer { margin-top: 0 !important; border-top: 1px solid rgba(255, 255, 255, 0.22); }

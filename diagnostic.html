@@ -3,7 +3,20 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>The Human-Agent Operating Model Diagnostic | Craig Horton</title>
+<title>Human-Agent Operating Model Diagnostic | Craig Horton</title>
+<link rel="canonical" href="https://www.craighortonadvisory.com/diagnostic.html">
+<meta name="description" content="Eight dimensions, four modes, one honest score. Where does your organisation actually sit on the spectrum from legacy hierarchy to agentic, and where should it be by the end of this year?">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Human-Agent Operating Model Diagnostic">
+<meta property="og:description" content="Eight dimensions, four modes, one honest score. Where does your organisation actually sit on the spectrum from legacy hierarchy to agentic, and where should it be by the end of this year?">
+<meta property="og:site_name" content="Craig Horton">
+<meta property="og:url" content="https://www.craighortonadvisory.com/diagnostic.html">
+<meta property="og:image" content="https://www.craighortonadvisory.com/images/share/diagnostic.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Diagnostic: Human-Agent Operating Model Diagnostic">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://www.craighortonadvisory.com/images/share/diagnostic.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -798,6 +811,7 @@
   :root .nav .nav-links { flex-wrap: wrap; gap: 6px 22px; }
   @media (max-width: 900px) { :root .nav .nav-links a:not(.cta) { display: inline-block; } }
 </style>
+<link rel="stylesheet" href="./subscribe-embed.css">
 </head>
 <body>
 
@@ -812,6 +826,7 @@
         <a href="./archive.html">The Transformation Brief</a>
         <a href="./work.html">Work</a>
         <a href="./about.html">About</a>
+        <a href="#subscribe" class="cta">Subscribe</a>
       </div>
     </nav>
   </div>
@@ -823,7 +838,7 @@
   <div class="glow"></div>
   <div class="masthead-inner">
     <div class="kicker">The Diagnostic</div>
-    <h1>The Human-Agent Operating Model Diagnostic</h1>
+    <h1>Human-Agent Operating Model Diagnostic</h1>
     <p class="subtitle">Eight dimensions, four modes, one honest score. Where does your organisation actually sit on the spectrum from legacy hierarchy to agentic, and where should it be by the end of this year?</p>
   </div>
 </header>
@@ -1144,7 +1159,7 @@
     </div>
 
     <div class="cta-section">
-      <a class="cta-btn amber" href="./">Subscribe to The Brief</a>
+      <a class="cta-btn amber" href="#subscribe">Subscribe to The Brief</a>
       <button class="cta-btn secondary" onclick="window.print()">Export Results</button>
       <button class="cta-btn secondary" onclick="resetDiagnostic()">Retake Diagnostic</button>
     </div>
@@ -1152,6 +1167,20 @@
 </div>
 
 <!-- ============ FOOTER ============ -->
+<div class="brief-signup" id="subscribe">
+  <div class="bs-inner">
+    <div class="bs-kicker">The Transformation Brief</div>
+    <div class="bs-title">A weekly signal, for leaders who need signal, not volume.</div>
+    <p class="bs-text">Friday mornings, in your inbox.</p>
+    <form class="subscribe-form" data-source="diagnostic" data-status="subscribe-status" novalidate>
+      <input type="email" name="email" required placeholder="Your email" autocomplete="email" aria-label="Email address">
+      <button type="submit">Get the Friday Brief</button>
+    </form>
+    <p class="subscribe-status" id="subscribe-status" role="status" aria-live="polite"></p>
+    <p class="subscribe-hint">No spam. Unsubscribe with one click. Also available <a href="https://www.linkedin.com/newsletters/the-transformation-brief-7445765347598684160" target="_blank" rel="noopener">on LinkedIn</a>.</p>
+  </div>
+</div>
+
 <footer class="footer">
   <div class="wordmark">Craig Horton</div>
   <p>The Human-Agent Operating Model Diagnostic, from The Transformation Brief.</p>
@@ -1340,6 +1369,7 @@ function resetDiagnostic() {
 </script>
 
 
+<script src="./site.js" defer></script>
 <script defer src="/_vercel/insights/script.js"></script>
 </body>
 </html>

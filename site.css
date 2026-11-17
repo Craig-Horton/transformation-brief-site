@@ -39,12 +39,27 @@ a:focus-visible, button:focus-visible, input:focus-visible { outline: 2px solid 
 .site-nav ul a { font-weight: 500; font-size: 15px; color: var(--white); border-bottom: 2px solid transparent; padding: 4px 0; }
 .site-nav ul a:hover { color: var(--white); border-bottom-color: var(--amber-soft); }
 .site-nav ul a[aria-current="page"] { border-bottom-color: var(--amber); }
+.site-nav ul { align-items: center; }
+.site-nav ul a.nav-cta { background: var(--amber); font-weight: 600; padding: 7px 16px; border-bottom: none; }
+.site-nav ul a.nav-cta:hover { background: var(--amber-soft); color: var(--navy); }
+/* The name already links home, so the Home item gives way to Subscribe on narrow screens. */
+@media (max-width: 700px) { .site-nav ul .nav-home { display: none; } }
+[id="subscribe"] { scroll-margin-top: 24px; }
 
 /* Masthead */
 .masthead { background: var(--navy); color: var(--white); padding: 56px 0 72px; }
 .masthead .kicker { color: var(--amber-soft); }
 .masthead h1 { font-family: var(--serif); font-weight: 600; font-size: clamp(44px, 8vw, 84px); line-height: 1.02; letter-spacing: -0.015em; margin: 14px 0 24px; }
 .masthead .lede { font-family: var(--serif); font-weight: 500; font-size: clamp(21px, 2.6vw, 27px); line-height: 1.42; max-width: 780px; color: var(--white); }
+
+/* Sign-up inside the masthead, so the form is on the first screen */
+.masthead-signup { margin-top: 40px; padding-top: 30px; border-top: 1px solid var(--hairline-light); max-width: 780px; }
+.masthead-signup .signup-line { font-size: 17px; line-height: 1.55; margin: 8px 0 0; max-width: 640px; }
+.masthead-signup .subscribe-form { margin: 18px 0 10px; }
+.masthead-signup a { color: var(--amber-soft); border-bottom-color: var(--amber-soft); }
+.masthead-signup a:hover { color: var(--white); border-bottom-color: var(--white); }
+/* On a phone, tighten the masthead so the email field is on the first screen. */
+@media (max-width: 700px) { .masthead { padding-top: 36px; } .masthead-signup { margin-top: 28px; padding-top: 22px; } }
 
 /* Shared type */
 .kicker { font-family: var(--sans); font-weight: 600; font-size: 13px; letter-spacing: 0.16em; color: var(--amber); }
