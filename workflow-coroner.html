@@ -8,8 +8,14 @@
 <meta property="og:type" content="website">
 <meta property="og:title" content="Workflow Coroner, the Stop-first AI BVF agent pipeline">
 <meta property="og:description" content="Five agents, Celonis-shaped ingestion, MuleSoft-shaped actuation. Open-source under the AI Business Value Framework.">
-<meta property="og:url" content="https://craighortonadvisory.com/workflow-coroner.html">
-<link rel="canonical" href="https://craighortonadvisory.com/workflow-coroner.html">
+<meta property="og:url" content="https://www.craighortonadvisory.com/workflow-coroner.html">
+<link rel="canonical" href="https://www.craighortonadvisory.com/workflow-coroner.html">
+<meta property="og:image" content="https://www.craighortonadvisory.com/images/share/workflow-coroner.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="An agent pipeline built on the AI BVF: Workflow Coroner">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://www.craighortonadvisory.com/images/share/workflow-coroner.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -236,6 +242,7 @@
   :root .nav .nav-links { flex-wrap: wrap; gap: 6px 22px; }
   @media (max-width: 900px) { :root .nav .nav-links a:not(.cta) { display: inline-block; } }
 </style>
+<link rel="stylesheet" href="./subscribe-embed.css">
 </head>
 <body>
 
@@ -249,6 +256,7 @@
         <a href="./archive.html">The Transformation Brief</a>
         <a href="./work.html">Work</a>
         <a href="./about.html">About</a>
+        <a href="#subscribe" class="cta">Subscribe</a>
       </div>
     </nav>
   </div>
@@ -259,7 +267,7 @@
   <div class="glow"></div>
   <div class="container masthead-inner">
     <div class="paper-kicker">An agent pipeline built on the AI BVF</div>
-    <h1>The Workflow Coroner</h1>
+    <h1>Workflow Coroner</h1>
     <p class="subtitle">Stop the wrong work before AI automates it. An open-source agent pipeline that reads Celonis-shaped event logs, scores against the AI Business Value Framework, and emits MuleSoft Anypoint calls when the ruling is Stop.</p>
     <div class="masthead-actions" aria-label="Workflow Coroner actions">
       <a href="./workflow-coroner.html#i=manufacturing&r=125000000&f=finance&t=gen3&x=agile&sa=72&fr=68&ce=64&gr=28" class="primary sample-run">Run sample workmate</a>
@@ -1052,6 +1060,20 @@
   </div>
 </section>
 
+<div class="brief-signup" id="subscribe">
+  <div class="bs-inner">
+    <div class="bs-kicker">The Transformation Brief</div>
+    <div class="bs-title">A weekly signal, for leaders who need signal, not volume.</div>
+    <p class="bs-text">Friday mornings, in your inbox.</p>
+    <form class="subscribe-form" data-source="coroner" data-status="subscribe-status" novalidate>
+      <input type="email" name="email" required placeholder="Your email" autocomplete="email" aria-label="Email address">
+      <button type="submit">Get the Friday Brief</button>
+    </form>
+    <p class="subscribe-status" id="subscribe-status" role="status" aria-live="polite"></p>
+    <p class="subscribe-hint">No spam. Unsubscribe with one click. Also available <a href="https://www.linkedin.com/newsletters/the-transformation-brief-7445765347598684160" target="_blank" rel="noopener">on LinkedIn</a>.</p>
+  </div>
+</div>
+
 <footer class="footer">
   <div class="container">
     <div>Craig Horton</div>
@@ -1063,6 +1085,7 @@
 </footer>
 
 
+<script src="./site.js" defer></script>
 <script defer src="/_vercel/insights/script.js"></script>
 </body>
 </html>

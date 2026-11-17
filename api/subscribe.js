@@ -10,6 +10,12 @@
 //   SUPABASE_URL                  e.g. https://xxxxx.supabase.co
 //   SUPABASE_SERVICE_ROLE_KEY     server-only, bypasses RLS
 //   ALLOWED_ORIGINS               comma-separated CORS allowlist
+//
+// A new subscriber is also added as a Resend contact and sent the welcome
+// email, once RESEND_API_KEY and BRIEF_FROM_EMAIL are set (see _email.js).
+// Without them this function behaves as it always has.
+
+import { emailConfigured, ensureContact, setContact, sendWelcome } from './_email.js';
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
 
@@ -44,7 +50,7 @@ export default async function handler(req, res) {
   }
 
   try {
-    const { email, source, anon_token } = req.body || {};
+    const { email, source, anon_token, path, referrer, utm_source, utm_medium, utm_campaign } = req.body || {};
 
     if (typeof email !== 'string' || email.length > 254 || !EMAIL_RE.test(email.trim())) {
       return res.status(400).json({ error: 'bad_email' });
@@ -80,22 +86,70 @@ export default async function handler(req, res) {
       user_agent: (req.headers['user-agent'] || '').slice(0, 256),
     };
 
-    const resp = await fetch(`${url}/rest/v1/brief_subscribers`, {
-      method: 'POST',
-      headers: {
-        'apikey': svcKey,
-        'Authorization': `Bearer ${svcKey}`,
-        'Content-Type': 'application/json',
-        // Treat duplicate emails as success, the user does not need to know.
-        'Prefer': 'return=minimal,resolution=ignore-duplicates',
-      },
-      body: JSON.stringify(row),
-    });
+    // Sign-up attribution, sent by site.js. Columns come from migration 003.
+    const clip = (v, max) => (typeof v === 'string' && v.trim() ? v.trim().slice(0, max) : null);
+    const attribution = {
+      landing_path: clip(path, 200),
+      referrer: clip(referrer, 200),
+      utm_source: clip(utm_source, 100),
+      utm_medium: clip(utm_medium, 100),
+      utm_campaign: clip(utm_campaign, 100),
+    };
+    const hasAttribution = Object.values(attribution).some((v) => v !== null);
+
+    const insert = (body) =>
+      fetch(`${url}/rest/v1/brief_subscribers`, {
+        method: 'POST',
+        headers: {
+          'apikey': svcKey,
+          'Authorization': `Bearer ${svcKey}`,
+          'Content-Type': 'application/json',
+          // Treat duplicate emails as success, the user does not need to know.
+          // The new row comes back so its id can sign the unsubscribe link.
+          'Prefer': 'return=representation,resolution=ignore-duplicates',
+        },
+        body: JSON.stringify(body),
+      });
+
+    let resp = await insert(hasAttribution ? { ...row, ...attribution } : row);
+
+    // If the attribution columns are not there yet (migration 003 not run),
+    // PostgREST answers 400. Keep the sign-up and drop the attribution.
+    if (resp.status === 400 && hasAttribution) {
+      const text = await resp.text().catch(() => '');
+      console.warn('subscribe, retrying without attribution', text.slice(0, 200));
+      resp = await insert(row);
+    }
 
     if (!resp.ok && resp.status !== 409) {
       const text = await resp.text().catch(() => '');
       console.error('subscribe, supabase rejected', resp.status, text.slice(0, 300));
       return res.status(502).json({ error: 'upstream' });
+    }
+
+    // Only a newly created row gets a welcome. An address that is already on
+    // the list comes back as 409 or an empty result, and is left alone.
+    let created = null;
+    if (resp.ok) {
+      const saved = await resp.json().catch(() => null);
+      if (Array.isArray(saved) && saved[0] && saved[0].id) created = saved[0];
+    }
+
+    if (created && emailConfigured()) {
+      // Awaited so the work finishes before the function is frozen. A failure
+      // here is logged and never costs the visitor their sign-up.
+      const results = await Promise.allSettled([
+        setContact(cleanEmail, false),
+        sendWelcome(cleanEmail, created.id),
+      ]);
+      results.forEach((r) => {
+        if (r.status === 'rejected') console.error('subscribe, email step failed', r.reason);
+      });
+    } else if (!created && emailConfigured()) {
+      // Already on the list. If the contact was never created in Resend (the
+      // first attempt failed), create it now. An existing contact is left
+      // exactly as it is, so this can never undo an unsubscribe.
+      await ensureContact(cleanEmail).catch((err) => console.error('subscribe, contact repair failed', err));
     }
 
     return res.status(200).json({ ok: true });
