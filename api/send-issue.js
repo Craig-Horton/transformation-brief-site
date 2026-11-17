@@ -12,8 +12,14 @@
 //   mode "send"  sends to every active subscriber. The job must be marked approved,
 //                and confirm_count must equal the number of active subscribers.
 //
-// Every subscriber is claimed in public.brief_send_log before their email goes, so a
-// second call, or two calls at once, can never send the same issue to anyone twice.
+// How a send is recorded, in public.brief_send_log:
+//   1. A subscriber is claimed (a row with no sent_at) before their email goes, so two
+//      calls at once cannot both send to them.
+//   2. When Resend accepts the email, the row gets its sent_at. Only rows with a
+//      sent_at count as delivered.
+//   3. If the email fails, or the request breaks, the claim is removed. A claim that
+//      is still unsent after ten minutes is treated as abandoned and tried again. The
+//      Idempotency-Key stops Resend sending a second copy if the first did go.
 // A long list is sent across several calls: the response says how many remain.
 //
 // Required environment variables: SUPABASE_URL, SUPABASE_SERVICE_ROLE_KEY,
@@ -24,8 +30,9 @@ import { parseIssue, renderHtml, renderText } from './_issue.js';
 
 const RESEND = 'https://api.resend.com';
 const TEST_ID = '00000000-0000-4000-8000-000000000000';
-const BUDGET_MS = 40 * 1000; // stop starting new emails after this, and report what remains
-const CHUNK = 5;             // emails in flight at once, under Resend's 10 requests a second
+const BUDGET_MS = 40 * 1000;        // stop starting new emails after this, and report what remains
+const CHUNK = 5;                    // emails in flight at once, under Resend's 10 requests a second
+const STALE_MS = 10 * 60 * 1000;    // an unsent claim older than this is abandoned
 
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 
@@ -58,33 +65,38 @@ export default async function handler(req, res) {
     const issue = parseIssue(job.markdown);
     if (!issue.title) return res.status(422).json({ error: 'no_headline' });
 
+    // Never throws: a broken connection is reported as a failed send.
     const sendOne = async (email, id, subject) => {
-      const link = unsubscribeUrl(id);
-      const message = {
-        from: process.env.BRIEF_FROM_EMAIL,
-        to: [email],
-        subject,
-        html: renderHtml(issue, link),
-        text: renderText(issue, link),
-        headers: { 'List-Unsubscribe': `<${link}>`, 'List-Unsubscribe-Post': 'List-Unsubscribe=One-Click' },
-      };
-      if (process.env.BRIEF_REPLY_TO) message.reply_to = process.env.BRIEF_REPLY_TO;
-      for (let attempt = 0; attempt < 3; attempt += 1) {
-        const resp = await fetch(`${RESEND}/emails`, {
-          method: 'POST',
-          headers: {
-            'Authorization': `Bearer ${process.env.RESEND_API_KEY}`,
-            'Content-Type': 'application/json',
-            'Idempotency-Key': `${job.slug}-${id}${subject.startsWith('[Test]') ? `-test-${Date.now()}` : ''}`,
-          },
-          body: JSON.stringify(message),
-        });
-        if (resp.ok) return { ok: true };
-        const text = (await resp.text().catch(() => '')).slice(0, 200);
-        if (resp.status === 429 && !/quota/i.test(text)) { await sleep(1200); continue; }
-        return { ok: false, status: resp.status, text, quota: /quota/i.test(text) };
+      try {
+        const link = unsubscribeUrl(id);
+        const message = {
+          from: process.env.BRIEF_FROM_EMAIL,
+          to: [email],
+          subject,
+          html: renderHtml(issue, link),
+          text: renderText(issue, link),
+          headers: { 'List-Unsubscribe': `<${link}>`, 'List-Unsubscribe-Post': 'List-Unsubscribe=One-Click' },
+        };
+        if (process.env.BRIEF_REPLY_TO) message.reply_to = process.env.BRIEF_REPLY_TO;
+        for (let attempt = 0; attempt < 3; attempt += 1) {
+          const resp = await fetch(`${RESEND}/emails`, {
+            method: 'POST',
+            headers: {
+              'Authorization': `Bearer ${process.env.RESEND_API_KEY}`,
+              'Content-Type': 'application/json',
+              'Idempotency-Key': `${job.slug}-${id}${subject.startsWith('[Test]') ? `-test-${Date.now()}` : ''}`,
+            },
+            body: JSON.stringify(message),
+          });
+          if (resp.ok) return { ok: true };
+          const text = (await resp.text().catch(() => '')).slice(0, 200);
+          if (resp.status === 429 && !/quota/i.test(text)) { await sleep(1200); continue; }
+          return { ok: false, status: resp.status, text, quota: /quota/i.test(text) };
+        }
+        return { ok: false, status: 429, text: 'rate limited' };
+      } catch (err) {
+        return { ok: false, status: 0, text: String(err && err.message ? err.message : err).slice(0, 200) };
       }
-      return { ok: false, status: 429, text: 'rate limited' };
     };
 
     // ---- test: one copy to the address stored on the job ----
@@ -114,24 +126,50 @@ export default async function handler(req, res) {
       return res.status(409).json({ error: 'count_mismatch', active: subscribers.length });
     }
 
-    const logResp = await db(`brief_send_log?job_id=eq.${encodeURIComponent(job.id)}&select=subscriber_id&limit=100000`);
-    if (!logResp.ok) return res.status(502).json({ error: 'upstream' });
-    const done = new Set((await logResp.json()).map((r) => r.subscriber_id));
-    const pending = subscribers.filter((s) => !done.has(s.id));
+    const jobFilter = `job_id=eq.${encodeURIComponent(job.id)}`;
+    const readLog = async () => {
+      const resp = await db(`brief_send_log?${jobFilter}&select=subscriber_id,claimed_at,sent_at&limit=100000`);
+      if (!resp.ok) return null;
+      return new Map((await resp.json()).map((r) => [r.subscriber_id, r]));
+    };
+    const log = await readLog();
+    if (!log) return res.status(502).json({ error: 'upstream' });
 
-    // Claim first, send second. If the email fails, the claim is released so a later call retries it.
-    const claim = async (subscriberId) => {
-      const resp = await db('brief_send_log?on_conflict=job_id,subscriber_id', {
-        method: 'POST',
-        headers: { 'Prefer': 'return=representation,resolution=ignore-duplicates' },
-        body: JSON.stringify({ job_id: job.id, subscriber_id: subscriberId }),
-      });
+    const cutoff = new Date(Date.now() - STALE_MS).toISOString();
+    const isStale = (row) => !row.sent_at && row.claimed_at < cutoff;
+    // Not yet sent: nobody has claimed them, or the claim was abandoned.
+    const pending = subscribers.filter((s) => !log.has(s.id) || isStale(log.get(s.id)));
+
+    const one = (subscriberId) => `${jobFilter}&subscriber_id=eq.${encodeURIComponent(subscriberId)}`;
+    const owns = async (resp) => {
       if (!resp.ok) return false;
       const rows = await resp.json().catch(() => []);
       return Array.isArray(rows) && rows.length === 1;
     };
-    const release = (subscriberId) =>
-      db(`brief_send_log?job_id=eq.${encodeURIComponent(job.id)}&subscriber_id=eq.${encodeURIComponent(subscriberId)}`, { method: 'DELETE' }).catch(() => {});
+    // Take the subscriber for this call. Only one caller can succeed.
+    const claim = async (subscriberId) => {
+      const now = new Date().toISOString();
+      if (log.has(subscriberId)) {
+        // an abandoned claim: take it over, but only if it is still abandoned
+        return owns(await db(`brief_send_log?${one(subscriberId)}&sent_at=is.null&claimed_at=lt.${encodeURIComponent(cutoff)}`, {
+          method: 'PATCH',
+          headers: { 'Prefer': 'return=representation' },
+          body: JSON.stringify({ claimed_at: now }),
+        }));
+      }
+      return owns(await db('brief_send_log?on_conflict=job_id,subscriber_id', {
+        method: 'POST',
+        headers: { 'Prefer': 'return=representation,resolution=ignore-duplicates' },
+        body: JSON.stringify({ job_id: job.id, subscriber_id: subscriberId, claimed_at: now }),
+      }));
+    };
+    const markSent = (subscriberId) =>
+      db(`brief_send_log?${one(subscriberId)}`, {
+        method: 'PATCH',
+        headers: { 'Prefer': 'return=minimal' },
+        body: JSON.stringify({ sent_at: new Date().toISOString() }),
+      });
+    const release = (subscriberId) => db(`brief_send_log?${one(subscriberId)}&sent_at=is.null`, { method: 'DELETE' });
 
     const started = Date.now();
     let sent = 0;
@@ -140,23 +178,33 @@ export default async function handler(req, res) {
     for (let i = 0; i < pending.length && !stop; i += CHUNK) {
       if (Date.now() - started > BUDGET_MS) break;
       const results = await Promise.all(pending.slice(i, i + CHUNK).map(async (s) => {
-        if (!(await claim(s.id))) return 'skipped';
-        const result = await sendOne(s.email, s.id, issue.title);
-        if (result.ok) return 'sent';
-        await release(s.id);
-        console.error('send-issue, email failed', result.status, result.text);
-        if (result.quota) stop = true;
-        return 'failed';
+        try {
+          if (!(await claim(s.id))) return 'skipped';
+          const result = await sendOne(s.email, s.id, issue.title);
+          if (result.ok) {
+            await markSent(s.id);
+            return 'sent';
+          }
+          await release(s.id);
+          console.error('send-issue, email failed', result.status, result.text);
+          if (result.quota) stop = true;
+          return 'failed';
+        } catch (err) {
+          // A database call broke. Leave any claim to go stale; it is retried later.
+          console.error('send-issue, subscriber step failed', err);
+          return 'failed';
+        }
       }));
       sent += results.filter((r) => r === 'sent').length;
       failed += results.filter((r) => r === 'failed').length;
       await sleep(700);
     }
 
-    const after = await db(`brief_send_log?job_id=eq.${encodeURIComponent(job.id)}&select=subscriber_id&limit=100000`);
-    const delivered = after.ok ? (await after.json()).length : done.size + sent;
-    const remaining = Math.max(0, subscribers.length - delivered);
-    if (remaining === 0 && failed === 0) {
+    // What is left is worked out from today's active subscribers, not from a count.
+    const after = await readLog();
+    const delivered = after ? subscribers.filter((s) => after.has(s.id) && after.get(s.id).sent_at).length : null;
+    const remaining = delivered === null ? null : subscribers.length - delivered;
+    if (remaining === 0) {
       await db(`brief_send_jobs?id=eq.${encodeURIComponent(job.id)}`, {
         method: 'PATCH',
         headers: { 'Prefer': 'return=minimal' },
