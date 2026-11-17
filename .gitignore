@@ -1,0 +1,4 @@
+# Record of who has been sent each issue (subscriber ids), kept on the machine that sends.
+tools/.sent/
+# Keys for the sending scripts, kept on this machine only.
+tools/.env

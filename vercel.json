@@ -22,5 +22,10 @@
       "destination": "/",
       "permanent": false
     }
-  ]
+  ],
+  "functions": {
+    "api/send-issue.js": {
+      "maxDuration": 60
+    }
+  }
 }
