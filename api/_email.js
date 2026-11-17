@@ -68,8 +68,8 @@ export const WELCOME_SUBJECT = 'You are on the list for The Transformation Brief
 const WELCOME_PARAGRAPHS = [
   'Hello,',
   'Thank you for subscribing to The Transformation Brief.',
-  'Each Friday morning you will receive one lead story from the week and three shorter items on AI transformation, read through the lens of management, governance and behaviour. I write it for leaders who have to decide what changes in their organisation and what that means for their colleagues.',
-  'If an issue matches what you are seeing in your own organisation, or you disagree with me, reply to this email and tell me.',
+  'You will get it by email every Friday morning. Each issue has one lead story from the week and three shorter items on how AI is changing the way organisations are run. I write it for leaders who have to decide what changes in their organisation, and what that means for their colleagues.',
+  'If an issue matches what you see in your own organisation, or you disagree with me, reply to this email and tell me.',
   'Craig',
 ];
 const WELCOME_FOOTER = 'The Transformation Brief is written in a personal capacity and uses public sources.';
