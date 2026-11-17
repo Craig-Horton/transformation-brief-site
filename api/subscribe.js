@@ -15,7 +15,7 @@
 // email, once RESEND_API_KEY and BRIEF_FROM_EMAIL are set (see _email.js).
 // Without them this function behaves as it always has.
 
-import { emailConfigured, setContact, sendWelcome } from './_email.js';
+import { emailConfigured, ensureContact, setContact, sendWelcome } from './_email.js';
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
 
@@ -145,6 +145,11 @@ export default async function handler(req, res) {
       results.forEach((r) => {
         if (r.status === 'rejected') console.error('subscribe, email step failed', r.reason);
       });
+    } else if (!created && emailConfigured()) {
+      // Already on the list. If the contact was never created in Resend (the
+      // first attempt failed), create it now. An existing contact is left
+      // exactly as it is, so this can never undo an unsubscribe.
+      await ensureContact(cleanEmail).catch((err) => console.error('subscribe, contact repair failed', err));
     }
 
     return res.status(200).json({ ok: true });

@@ -52,6 +52,14 @@ export async function setContact(email, unsubscribed) {
   return updated.ok;
 }
 
+// Make sure a contact exists, without touching one that is already there.
+// Used when an address that is already on the list signs up again: it repairs
+// a contact that was never created, and it cannot re-subscribe anyone.
+export async function ensureContact(email) {
+  const created = await resend('/contacts', 'POST', { email, unsubscribed: false });
+  return created.ok;
+}
+
 // ---------------------------------------------------------------------------
 // Welcome email. Edit the wording here.
 // ---------------------------------------------------------------------------

@@ -23,15 +23,23 @@ if (apply && !RESEND_API_KEY) {
 
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 
-const listResp = await fetch(
-  `${SUPABASE_URL}/rest/v1/brief_subscribers?select=email&unsubscribed_at=is.null&order=created_at.asc`,
-  { headers: { apikey: SUPABASE_SERVICE_ROLE_KEY, Authorization: `Bearer ${SUPABASE_SERVICE_ROLE_KEY}` } }
-);
-if (!listResp.ok) {
-  console.error('Could not read subscribers:', listResp.status, (await listResp.text()).slice(0, 200));
-  process.exit(1);
+// Supabase returns at most 1,000 rows per request, so read page by page.
+const PAGE = 1000;
+const all = [];
+for (let offset = 0; ; offset += PAGE) {
+  const listResp = await fetch(
+    `${SUPABASE_URL}/rest/v1/brief_subscribers?select=email&unsubscribed_at=is.null&order=created_at.asc,id.asc&limit=${PAGE}&offset=${offset}`,
+    { headers: { apikey: SUPABASE_SERVICE_ROLE_KEY, Authorization: `Bearer ${SUPABASE_SERVICE_ROLE_KEY}` } }
+  );
+  if (!listResp.ok) {
+    console.error('Could not read subscribers:', listResp.status, (await listResp.text()).slice(0, 200));
+    process.exit(1);
+  }
+  const rows = await listResp.json();
+  all.push(...rows);
+  if (rows.length < PAGE) break;
 }
-const emails = [...new Set((await listResp.json()).map((r) => String(r.email).trim().toLowerCase()))];
+const emails = [...new Set(all.map((r) => String(r.email).trim().toLowerCase()))];
 console.log(`${emails.length} active subscribers on the list.`);
 
 if (!apply) {

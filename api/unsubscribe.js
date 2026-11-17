@@ -79,33 +79,48 @@ export default async function handler(req, res) {
         '<h1>That did not work.</h1><p>Reply to any email from the Brief and you will be removed by hand.</p>'));
     }
 
-    // Only an active row is changed. A second click finds nothing and still
-    // gets the same confirmation.
-    const resp = await fetch(
-      `${url}/rest/v1/brief_subscribers?id=eq.${encodeURIComponent(id)}&unsubscribed_at=is.null`,
-      {
-        method: 'PATCH',
-        headers: {
-          'apikey': svcKey,
-          'Authorization': `Bearer ${svcKey}`,
-          'Content-Type': 'application/json',
-          'Prefer': 'return=representation',
-        },
-        body: JSON.stringify({ unsubscribed_at: new Date().toISOString() }),
-      }
-    );
+    const headers = {
+      'apikey': svcKey,
+      'Authorization': `Bearer ${svcKey}`,
+      'Content-Type': 'application/json',
+    };
+    const failed = () => send(res, 502, page('Something went wrong',
+      '<h1>That did not work.</h1><p>Give it a minute and try again, or reply to any email from the Brief and you will be removed by hand.</p>'));
 
-    if (!resp.ok) {
-      const text = await resp.text().catch(() => '');
-      console.error('unsubscribe, supabase rejected', resp.status, text.slice(0, 300));
-      return send(res, 502, page('Something went wrong',
-        '<h1>That did not work.</h1><p>Give it a minute and try again, or reply to any email from the Brief and you will be removed by hand.</p>'));
+    // Look the subscriber up whatever their state. A repeat click then
+    // finishes an unsubscribe that only got half way the first time.
+    const rowUrl = `${url}/rest/v1/brief_subscribers?id=eq.${encodeURIComponent(id)}`;
+    const lookup = await fetch(`${rowUrl}&select=email,unsubscribed_at`, { headers });
+    if (!lookup.ok) {
+      const text = await lookup.text().catch(() => '');
+      console.error('unsubscribe, lookup rejected', lookup.status, text.slice(0, 300));
+      return failed();
+    }
+    const found = await lookup.json().catch(() => []);
+    const row = Array.isArray(found) ? found[0] : null;
+
+    if (row && !row.unsubscribed_at) {
+      const resp = await fetch(rowUrl, {
+        method: 'PATCH',
+        headers: { ...headers, 'Prefer': 'return=minimal' },
+        body: JSON.stringify({ unsubscribed_at: new Date().toISOString() }),
+      });
+      if (!resp.ok) {
+        const text = await resp.text().catch(() => '');
+        console.error('unsubscribe, supabase rejected', resp.status, text.slice(0, 300));
+        return failed();
+      }
     }
 
-    const changed = await resp.json().catch(() => []);
-    const email = Array.isArray(changed) && changed[0] ? changed[0].email : null;
-    if (email && emailConfigured()) {
-      await setContact(email, true).catch((err) => console.error('unsubscribe, contact step failed', err));
+    // Broadcasts are sent from Resend, so the unsubscribe is only complete
+    // once Resend has it too. If that step fails, say so, and let the next
+    // click try again.
+    if (row && emailConfigured()) {
+      const ok = await setContact(row.email, true).catch((err) => {
+        console.error('unsubscribe, contact step failed', err);
+        return false;
+      });
+      if (!ok) return failed();
     }
 
     return send(res, 200, page('Unsubscribed',
