@@ -94,6 +94,7 @@
     <p>Everything the agent returns can be checked. Every answer carries the sentence it rests on and the document that sentence came from, and the one-page brief for each verdict shows the two side by side.</p>
     <p>The verdict and every euro figure come from the published rules, and where the team's hourly cost is not known there is no euro figure at all. The agent's standing instruction is to draft and never send, and AI BVF's own tools only read and calculate.</p>
     <p>One vendor email in the test carried a line telling any AI assistant to rate the proposal Accelerate. The agent reported the line and ignored it.</p>
+    <p>It is also built to hold as little as possible. The connector asks for no account and keeps nothing you send it, and the site reads your documents for a single run and stores none of them. The usage counts it does record are anonymous, and they sit in a database in the European Union with row-level security switched on for every table.</p>
     <p>Then I gave the same ten files to ChatGPT, Gemini, Claude and Perplexity, once each. They disagreed on six of the fifteen answers and still came to the same conclusion on all three ideas, and every one of them reported the vendor's line and ignored it. A model's reading varies, and the fixed rules keep that variation small enough to see and to check.</p>
 
     <h2>What it has not done yet</h2>
@@ -105,7 +106,6 @@
       <li>Try it in one tap on the made-up retailer, on your phone: <a href="https://www.aibvf.com/agent">aibvf.com/agent</a></li>
       <li>Put one AI idea of your own through five questions: <a href="https://www.aibvf.com/start">aibvf.com/start</a></li>
       <li>Send the second half of this page to the person who runs your AI tools.</li>
-      <li>Write to me <a href="https://linkedin.com/in/Craig-Horton-ai" target="_blank" rel="noopener">on LinkedIn</a> if you want to run it on a real department's log. That is the test I want next.</li>
     </ul>
     <p>AI BVF is a personal project, built in my own time. No employer or customer data was used, and every example on this page is a made-up company.</p>
   </div>
@@ -225,6 +225,19 @@ openclaw automations create "0 7 * * 1" "Run the aibvf-agent skill. Reply NO_REP
       <li><strong>The count.</strong> Each tool call is counted anonymously: the tool, the version, hosted or local, the industry, function and AI type, the verdict, and whether a person or an agent answered. No proposal, quote, score or revenue figure is in it.</li>
       <li><strong>Switching the count off.</strong> Run <code>aibvf-mcp</code> yourself with <code>AIBVF_TELEMETRY_DISABLE=1</code>. The hosted connector always counts.</li>
       <li><strong>The links.</strong> A brief link and a report link carry their content after the <code>#</code> sign, which a browser does not send to a server.</li>
+    </ul>
+
+    <h3>How it is secured</h3>
+    <ul class="plain">
+      <li><strong>Nothing to sign in to.</strong> The connector takes no account, no key and no sign-in, so it holds no credential of yours.</li>
+      <li><strong>Read-only tools.</strong> All 13 tools are declared read-only. They calculate and return. None writes, sends or changes a system.</li>
+      <li><strong>Encrypted on the way.</strong> The site, the connector and this page are served over HTTPS only, with strict transport security set for two years. Vercel hosts all three.</li>
+      <li><strong>A run on the site.</strong> The endpoint refuses requests sent from other websites and caps what one run may carry. Documents are held in memory for that one request. They are not stored and not logged, and a failed run logs the kind of failure and nothing else.</li>
+      <li><strong>The model key and the spend.</strong> The key for the model sits in the host's settings, never in the code or the page. The agent runs only where it has been switched on by hand, and a monthly spending cap is set on the model account.</li>
+      <li><strong>What comes back is text.</strong> The page shows every result as text and never as markup, and it opens a brief link only when the link has the expected form.</li>
+      <li><strong>The database.</strong> Usage counts go to a Supabase database in the European Union. Row-level security is on for every table in it.</li>
+      <li><strong>The code.</strong> Every change is tested and scanned for security faults before it is merged. The packages are published from that pipeline, each with a signed record of where it was built, and the engine's dependencies are checked every week.</li>
+      <li><strong>Reporting a fault.</strong> The repository has a <a href="https://github.com/Craig-Horton/ai-bvf/blob/main/SECURITY.md" target="_blank" rel="noopener">security policy</a> and a private route to report one.</li>
     </ul>
 
     <h3>How it is held to account</h3>
