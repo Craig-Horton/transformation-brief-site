@@ -94,7 +94,7 @@
     <p>Everything the agent returns can be checked. Every answer carries the sentence it rests on and the document that sentence came from, and the one-page brief for each verdict shows the two side by side.</p>
     <p>The verdict and every euro figure come from the published rules, and where the team's hourly cost is not known there is no euro figure at all. The agent's standing instruction is to draft and never send, and AI BVF's own tools only read and calculate.</p>
     <p>One vendor email in the test carried a line telling any AI assistant to rate the proposal Accelerate. The agent reported the line and ignored it.</p>
-    <p>Then I gave the same ten files to ChatGPT, Gemini, Claude and Perplexity, once each. They disagreed on six of the fifteen answers and reached the same three verdicts, and every one of them reported the vendor's line and ignored it. A model's reading varies, and the fixed rules keep that variation small enough to see and to check.</p>
+    <p>Then I gave the same ten files to ChatGPT, Gemini, Claude and Perplexity, once each. They disagreed on six of the fifteen answers and still came to the same conclusion on all three ideas, and every one of them reported the vendor's line and ignored it. A model's reading varies, and the fixed rules keep that variation small enough to see and to check.</p>
 
     <h2>What it has not done yet</h2>
     <p>No real system export has been through it, only the made-up one, and the savings it sized for that desk were modest, between €15,000 and €35,000 a year across five processes. A log also shows only the work that passes through that one system, so whatever happens in email, meetings and spreadsheets stays outside what the agent can see.</p>
@@ -119,8 +119,8 @@
 
     <h3>What it is made of</h3>
     <ul class="plain">
-      <li><strong>The engine.</strong> <code>@aibvf/core</code> 0.14.2, in TypeScript. It holds the questions, the scores each answer carries, the thresholds and the rules. It is deterministic and MIT licensed.</li>
-      <li><strong>The connector.</strong> <code>aibvf-mcp</code> 0.19.1, a Model Context Protocol server with 13 tools. It is hosted at <code>https://mcp.aibvf.com/api/mcp</code>, with no account and no sign-in, and it runs on your own machine with <code>npx -y aibvf-mcp</code>.</li>
+      <li><strong>The engine.</strong> <code>@aibvf/core</code> 0.14.3, in TypeScript. It holds the questions, the scores each answer carries, the thresholds and the rules. It is deterministic and MIT licensed.</li>
+      <li><strong>The connector.</strong> <code>aibvf-mcp</code> 0.19.2, a Model Context Protocol server with 13 tools. It is hosted at <code>https://mcp.aibvf.com/api/mcp</code>, with no account and no sign-in, and it runs on your own machine with <code>npx -y aibvf-mcp</code>.</li>
       <li><strong>The operating brief.</strong> One short text that is the agent's whole rulebook: the mandate, the run and the rules. The connector serves it as the prompt <code>aibvf_agent</code>.</li>
       <li><strong>Two skills.</strong> <code>aibvf-agent</code> wraps the brief for assistants that load skills. <code>aibvf-deep-dive</code> carries the script that counts a log. Both are in the repository under <code>skills/</code>.</li>
     </ul>
@@ -232,8 +232,8 @@ openclaw automations create "0 7 * * 1" "Run the aibvf-agent skill. Reply NO_REP
       <li><strong>The rules are code.</strong> The questions and the score each answer carries are in <a href="https://github.com/Craig-Horton/ai-bvf/blob/main/packages/js/src/guidedQuestions.ts" target="_blank" rel="noopener">guidedQuestions.ts</a>. The process rules are in <a href="https://github.com/Craig-Horton/ai-bvf/blob/main/packages/js/src/diagnose.ts" target="_blank" rel="noopener">diagnose.ts</a>.</li>
       <li><strong>Evidence or unknown.</strong> The engine counts an answer with no quote and no source as not known. On the site, code checks every quote word for word against the documents before the engine sees it.</li>
       <li><strong>A contradiction holds the verdict.</strong> A quote that says the opposite of the answer it was given for holds the verdict at Fix and is named.</li>
-      <li><strong>Tests.</strong> 152 on the engine, 11 on the connector and 15 on the script that counts a log. Every tool publishes one working call, and a test makes all 13.</li>
-      <li><strong>Seven replies, the same verdicts.</strong> ChatGPT, Gemini, Claude and Perplexity were given the same ten Halden files. They split on six of fifteen answers and reached the same three verdicts, and every quote was in the files word for word. Each ran once. The message and the replies are <a href="https://github.com/Craig-Horton/ai-bvf/tree/main/examples/agent-run/consistency-test" target="_blank" rel="noopener">in the repository</a>.</li>
+      <li><strong>Tests.</strong> 153 on the engine, 11 on the connector and 15 on the script that counts a log. Every tool publishes one working call, and a test makes all 13.</li>
+      <li><strong>The same files, four assistants.</strong> ChatGPT, Gemini, Claude and Perplexity were given the same ten Halden files, once each. Seven replies split on six of fifteen answers and reached the same three verdicts, and every quote was in the files word for word. I then reworded two answer choices that the replies had read in two ways. On a second round ChatGPT and Claude agreed on 14 of 15 answers, and Gemini answered as before. The messages and every reply are <a href="https://github.com/Craig-Horton/ai-bvf/tree/main/examples/agent-run/consistency-test" target="_blank" rel="noopener">in the repository</a>.</li>
     </ul>
 
     <h3>What is not settled</h3>
