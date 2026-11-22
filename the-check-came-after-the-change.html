@@ -27,7 +27,13 @@
 <style>
   /* This paper only: steps, commands and two small tables. Navy on white, white on navy, amber for accents. */
   .masthead h1 { font-size: clamp(40px, 7vw, 72px); }
-  .jump { margin-top: 30px; display: flex; flex-wrap: wrap; gap: 10px 28px; font-weight: 600; font-size: 16px; }
+  .try { margin-top: 30px; }
+  .try a { display: inline-flex; align-items: center; gap: 18px; border-bottom: none; color: var(--white); }
+  .try img { width: 132px; height: auto; flex: none; }
+  .try span { background: var(--amber); color: var(--white); font-weight: 600; font-size: 17px; line-height: 1.35; padding: 12px 20px; }
+  .try a:hover span { background: var(--amber-soft); color: var(--navy); }
+  @media (max-width: 560px) { .try a { gap: 14px; } .try img { width: 104px; } }
+  .jump { margin-top: 22px; display: flex; flex-wrap: wrap; gap: 10px 28px; font-weight: 600; font-size: 16px; }
   .jump a { color: var(--amber-soft); border-bottom-color: var(--amber-soft); }
   .jump a:hover { color: var(--white); border-bottom-color: var(--white); }
   .prose h2 { margin-top: 44px; }
@@ -69,6 +75,7 @@
     <div class="kicker">Paper · 22 November 2026</div>
     <h1>The check came after the change</h1>
     <p class="lede">What an AI agent found when I handed it AI BVF for a weekend, and how to run it yourself. The first part is for executives. The second is for the people who will set it up.</p>
+    <p class="try"><a href="https://www.aibvf.com/agent"><img src="./images/web/agent-robot.webp" width="560" height="419" alt="The AI BVF agent, a small robot pointing to the link"><span>See the agent work: aibvf.com/agent</span></a></p>
     <p class="jump"><a href="#executives">For executives</a><a href="#technical">For technical staff</a></p>
   </div>
 </div>
