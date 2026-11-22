@@ -97,7 +97,7 @@
 
     <h2>What it has not done yet</h2>
     <p>No real system export has been through it, only the made-up one, and the savings it sized for that desk were modest, between €15,000 and €35,000 a year across five processes. A log also shows only the work that passes through that one system, so whatever happens in email, meetings and spreadsheets stays outside what the agent can see.</p>
-    <p>The weekend exposed two faults, one in how an outside agent answers the fifth question and one on Windows, and both are fixed. An agent's draft is still a model's writing, and it is there to be read by the person who owns the work before anything changes.</p>
+    <p>The weekend exposed two faults, one in how an outside agent answers the fifth question and one on Windows, and both are fixed and have been run again by the agent that found them. An agent's draft is still a model's writing, and it is there to be read by the person who owns the work before anything changes.</p>
 
     <h2>What to do with this</h2>
     <ul class="actions">
@@ -238,8 +238,8 @@ openclaw automations create "0 7 * * 1" "Run the aibvf-agent skill. Reply NO_REP
     <ul class="plain">
       <li>No real system export has been read. Every run so far used the made-up retailer.</li>
       <li>The script reads CSV. A system that only offers an API needs its rows exported first.</li>
-      <li>The Windows fault was fixed and checked from a folder with a space in its name, which fails for the same reason. It has not yet been run again on a Windows machine.</li>
-      <li>No agent has yet run the flow count or written a draft in the short form.</li>
+      <li>The flow count and the short draft have been run once, by one agent, on the made-up log. Every figure in that draft was a count the script printed.</li>
+      <li>The fifth question reaches an outside agent in a field named <code>open_questions</code>. An agent that holds an older copy of the brief has to fetch the brief again to be told about it.</li>
       <li>OpenClaw has no one-line install yet. That waits on a listing in its skill directory.</li>
     </ul>
     <p>Tell me what is wrong and what is missing, <a href="https://github.com/Craig-Horton/ai-bvf/issues" target="_blank" rel="noopener">in the repository</a> or on LinkedIn.</p>
