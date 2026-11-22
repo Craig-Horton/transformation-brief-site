@@ -23,7 +23,7 @@
 // Environment (the same values the Vercel project uses):
 //   RESEND_API_KEY, BRIEF_FROM_EMAIL, BRIEF_REPLY_TO (optional)
 //   SUPABASE_URL, SUPABASE_SERVICE_ROLE_KEY
-//   SITE_URL (optional, defaults to https://www.craighortonadvisory.com)
+//   SITE_URL (optional, defaults to https://thetransformationbrief.ai)
 // Put them in tools/.env (copy tools/.env.example), or set them in the terminal.
 //
 // Each subscriber gets their own one-click unsubscribe link. A record of who has been
@@ -56,7 +56,7 @@ if (!issuePath || !fs.existsSync(issuePath)) {
   process.exit(1);
 }
 
-const SITE = (process.env.SITE_URL || 'https://www.craighortonadvisory.com').replace(/\/+$/, '');
+const SITE = (process.env.SITE_URL || 'https://thetransformationbrief.ai').replace(/\/+$/, '');
 const RESEND = (process.env.RESEND_API_URL || 'https://api.resend.com').replace(/\/+$/, '');
 const FOOTER = 'The Transformation Brief is written in a personal capacity and uses public sources.';
 const TEST_ID = '00000000-0000-4000-8000-000000000000';

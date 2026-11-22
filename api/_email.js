@@ -7,7 +7,7 @@
 //   BRIEF_FROM_EMAIL   sender on a domain verified in Resend,
 //                      e.g. Craig Horton <brief@craighortonadvisory.com>
 //   BRIEF_REPLY_TO     optional, where replies should go
-//   SITE_URL           optional, defaults to https://www.craighortonadvisory.com
+//   SITE_URL           optional, defaults to https://thetransformationbrief.ai
 
 const RESEND = 'https://api.resend.com';
 
@@ -18,7 +18,7 @@ export function emailConfigured() {
 }
 
 export function siteUrl() {
-  return (process.env.SITE_URL || 'https://www.craighortonadvisory.com').replace(/\/+$/, '');
+  return (process.env.SITE_URL || 'https://thetransformationbrief.ai').replace(/\/+$/, '');
 }
 
 // The subscriber row id is a random uuid, so the link carries no email address.

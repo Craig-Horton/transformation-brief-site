@@ -7,7 +7,7 @@
 //   SUPABASE_URL                  e.g. https://xxxxx.supabase.co
 //   SUPABASE_SERVICE_ROLE_KEY     server-only, bypasses RLS, never sent to browser
 //   ALLOWED_ORIGINS               comma-separated, e.g.
-//                                 https://brief.craighortonadvisory.com,https://transformation-brief-site.vercel.app
+//                                 https://thetransformationbrief.ai,https://transformation-brief-site.vercel.app
 //
 // The anon key is NOT used by this function, because the table has RLS on
 // and anon cannot write. This is deliberate. All writes go through here.

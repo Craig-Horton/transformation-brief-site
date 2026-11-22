@@ -2,4 +2,4 @@ User-agent: *
 Disallow: /epam/
 Disallow: /share-cbb65973c46c/
 
-Sitemap: https://www.craighortonadvisory.com/sitemap.xml
+Sitemap: https://thetransformationbrief.ai/sitemap.xml
