@@ -118,8 +118,8 @@
 
     <h3>What it is made of</h3>
     <ul class="plain">
-      <li><strong>The engine.</strong> <code>@aibvf/core</code> 0.14.1, in TypeScript. It holds the questions, the scores each answer carries, the thresholds and the rules. It is deterministic and MIT licensed.</li>
-      <li><strong>The connector.</strong> <code>aibvf-mcp</code> 0.19.0, a Model Context Protocol server with 13 tools. It is hosted at <code>https://mcp.aibvf.com/api/mcp</code>, with no account and no sign-in, and it runs on your own machine with <code>npx -y aibvf-mcp</code>.</li>
+      <li><strong>The engine.</strong> <code>@aibvf/core</code> 0.14.2, in TypeScript. It holds the questions, the scores each answer carries, the thresholds and the rules. It is deterministic and MIT licensed.</li>
+      <li><strong>The connector.</strong> <code>aibvf-mcp</code> 0.19.1, a Model Context Protocol server with 13 tools. It is hosted at <code>https://mcp.aibvf.com/api/mcp</code>, with no account and no sign-in, and it runs on your own machine with <code>npx -y aibvf-mcp</code>.</li>
       <li><strong>The operating brief.</strong> One short text that is the agent's whole rulebook: the mandate, the run and the rules. The connector serves it as the prompt <code>aibvf_agent</code>.</li>
       <li><strong>Two skills.</strong> <code>aibvf-agent</code> wraps the brief for assistants that load skills. <code>aibvf-deep-dive</code> carries the script that counts a log. Both are in the repository under <code>skills/</code>.</li>
     </ul>
@@ -155,7 +155,7 @@ claude mcp add --transport http aibvf https://mcp.aibvf.com/api/mcp</code></pre>
 <pre><code>{"aibvf": {"url": "https://mcp.aibvf.com/api/mcp", "transport": "streamable-http"}}</code></pre>
     <ol start="2">
       <li>Ask the agent which tools it has. It should list 13 from <code>aibvf</code>.</li>
-      <li>Message it: "Get the prompt aibvf_agent from the aibvf server and follow it." It states its mandate and asks once whether to change it.</li>
+      <li>Message it: "Get the prompt aibvf_agent from the aibvf server and follow it." It states its mandate and goes ahead, because you told it to run. You can change the mandate at any time.</li>
       <li>Then: "Do this every Monday at 07:00." It schedules itself and reports in that chat. "Pause AI BVF" stops every run.</li>
     </ol>
     <p>From a terminal the same steps are the lines below. The Gateway has to be stopped while a connector is added.</p>
@@ -231,12 +231,14 @@ openclaw automations create "0 7 * * 1" "Run the aibvf-agent skill. Reply NO_REP
       <li><strong>The rules are code.</strong> The questions and the score each answer carries are in <a href="https://github.com/Craig-Horton/ai-bvf/blob/main/packages/js/src/guidedQuestions.ts" target="_blank" rel="noopener">guidedQuestions.ts</a>. The process rules are in <a href="https://github.com/Craig-Horton/ai-bvf/blob/main/packages/js/src/diagnose.ts" target="_blank" rel="noopener">diagnose.ts</a>.</li>
       <li><strong>Evidence or unknown.</strong> The engine counts an answer with no quote and no source as not known. On the site, code checks every quote word for word against the documents before the engine sees it.</li>
       <li><strong>A contradiction holds the verdict.</strong> A quote that says the opposite of the answer it was given for holds the verdict at Fix and is named.</li>
-      <li><strong>Tests.</strong> 151 on the engine, 11 on the connector and 15 on the script that counts a log. Every tool publishes one working call, and a test makes all 13.</li>
+      <li><strong>Tests.</strong> 152 on the engine, 11 on the connector and 15 on the script that counts a log. Every tool publishes one working call, and a test makes all 13.</li>
+      <li><strong>Seven replies, the same verdicts.</strong> ChatGPT, Gemini, Claude and Perplexity were given the same ten Halden files. They split on six of fifteen answers and reached the same three verdicts, and every quote was in the files word for word. Each ran once. The message and the replies are <a href="https://github.com/Craig-Horton/ai-bvf/tree/main/examples/agent-run/consistency-test" target="_blank" rel="noopener">in the repository</a>.</li>
     </ul>
 
     <h3>What is not settled</h3>
     <ul class="plain">
       <li>No real system export has been read. Every run so far used the made-up retailer.</li>
+      <li>The choice of answer is a model's judgement. The tool checks that the quoted words are there, and it cannot check that they prove the answer. The person who reads the brief is that check, which is why the quote sits beside every answer.</li>
       <li>The script reads CSV. A system that only offers an API needs its rows exported first.</li>
       <li>The flow count and the short draft have been run once, by one agent, on the made-up log. Every figure in that draft was a count the script printed.</li>
       <li>The fifth question reaches an outside agent in a field named <code>open_questions</code>. An agent that holds an older copy of the brief has to fetch the brief again to be told about it.</li>
