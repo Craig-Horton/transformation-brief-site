@@ -27,7 +27,10 @@
 <style>
   /* This paper only: steps, commands and two small tables. Navy on white, white on navy, amber for accents. */
   .masthead h1 { font-size: clamp(40px, 7vw, 72px); }
-  .jump { margin-top: 30px; display: flex; flex-wrap: wrap; gap: 10px 28px; font-weight: 600; font-size: 16px; }
+  .try { margin-top: 30px; }
+  .try a { display: inline-block; background: var(--amber); color: var(--white); font-weight: 600; font-size: 17px; padding: 12px 20px; border-bottom: none; }
+  .try a:hover { background: var(--amber-soft); color: var(--navy); }
+  .jump { margin-top: 22px; display: flex; flex-wrap: wrap; gap: 10px 28px; font-weight: 600; font-size: 16px; }
   .jump a { color: var(--amber-soft); border-bottom-color: var(--amber-soft); }
   .jump a:hover { color: var(--white); border-bottom-color: var(--white); }
   .prose h2 { margin-top: 44px; }
@@ -69,6 +72,7 @@
     <div class="kicker">Paper · 22 November 2026</div>
     <h1>The check came after the change</h1>
     <p class="lede">What an AI agent found when I handed it AI BVF for a weekend, and how to run it yourself. The first part is for executives. The second is for the people who will set it up.</p>
+    <p class="try"><a href="https://www.aibvf.com/agent">See the agent work: aibvf.com/agent</a></p>
     <p class="jump"><a href="#executives">For executives</a><a href="#technical">For technical staff</a></p>
   </div>
 </div>
