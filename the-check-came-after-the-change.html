@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The check came after the change | Craig Horton</title>
+<meta name="description" content="What an AI agent found when Craig Horton handed it AI BVF for a weekend, and how to run it yourself. For executives first, then for technical staff.">
+<meta name="author" content="Craig Horton">
+<meta property="og:type" content="article">
+<meta property="og:title" content="The check came after the change">
+<meta property="og:description" content="What an AI agent found when Craig Horton handed it AI BVF for a weekend, and how to run it yourself. For executives first, then for technical staff.">
+<meta property="og:site_name" content="Craig Horton">
+<meta property="og:url" content="https://www.craighortonadvisory.com/the-check-came-after-the-change.html">
+<link rel="canonical" href="https://www.craighortonadvisory.com/the-check-came-after-the-change.html">
+<meta property="og:image" content="https://www.craighortonadvisory.com/images/share/the-check-came-after-the-change.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Paper: The check came after the change">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="The check came after the change">
+<meta name="twitter:description" content="What an AI agent found when Craig Horton handed it AI BVF for a weekend, and how to run it yourself. For executives first, then for technical staff.">
+<meta name="twitter:image" content="https://www.craighortonadvisory.com/images/share/the-check-came-after-the-change.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="./site.css">
+<style>
+  /* This paper only: steps, commands and two small tables. Navy on white, white on navy, amber for accents. */
+  .masthead h1 { font-size: clamp(40px, 7vw, 72px); }
+  .jump { margin-top: 30px; display: flex; flex-wrap: wrap; gap: 10px 28px; font-weight: 600; font-size: 16px; }
+  .jump a { color: var(--amber-soft); border-bottom-color: var(--amber-soft); }
+  .jump a:hover { color: var(--white); border-bottom-color: var(--white); }
+  .prose h2 { margin-top: 44px; }
+  .prose .kicker + h2 { margin-top: 10px; }
+  .prose h3 { margin-top: 40px; padding-top: 26px; border-top: 1px solid var(--hairline); }
+  .prose ol, .prose ul { max-width: 720px; margin: 0 0 18px 22px; }
+  .prose li { margin-bottom: 10px; padding-left: 4px; }
+  .prose ul.plain { list-style: none; margin-left: 0; }
+  .prose ul.plain li { padding: 12px 0; border-top: 1px solid var(--hairline); margin: 0; }
+  .prose ul.plain li:first-child { border-top: none; padding-top: 0; }
+  .prose ul.actions li { font-weight: 500; }
+  .prose ::marker { color: var(--amber); font-weight: 600; }
+  code { font-family: ui-monospace, 'SFMono-Regular', Menlo, Consolas, monospace; font-size: 0.88em; color: var(--navy); border: 1px solid var(--hairline); padding: 1px 5px; overflow-wrap: anywhere; }
+  pre { background: var(--navy); color: var(--white); padding: 18px 20px; margin: 0 0 22px; overflow-x: auto; max-width: 720px; }
+  pre code { color: var(--white); border: none; padding: 0; font-size: 14px; line-height: 1.6; overflow-wrap: normal; white-space: pre; }
+  .quoted { border-left: 3px solid var(--amber); padding: 4px 0 4px 18px; font-weight: 500; overflow-wrap: anywhere; }
+  table { width: 100%; max-width: 720px; border-collapse: collapse; margin: 0 0 22px; font-size: 16px; }
+  th, td { text-align: left; vertical-align: top; padding: 11px 14px 11px 0; border-top: 1px solid var(--hairline); }
+  th { font-weight: 600; font-size: 14px; letter-spacing: 0.04em; color: var(--amber); border-top: none; }
+  td:first-child { width: 42%; }
+  td code { white-space: nowrap; overflow-wrap: normal; }
+  @media (max-width: 560px) { td:first-child { width: 46%; } table { font-size: 15px; } }
+  [id="executives"], [id="technical"] { scroll-margin-top: 16px; }
+</style>
+</head>
+<body>
+<div class="top-rule"></div>
+<header class="site-header">
+  <div class="container">
+    <nav class="site-nav" aria-label="Main">
+      <a href="./index.html" class="brand">Craig Horton</a>
+      <ul><li class="nav-home"><a href="./index.html">Home</a></li><li><a href="./archive.html">The Transformation Brief</a></li><li><a href="./work.html">Work</a></li><li><a href="./about.html">About</a></li><li><a class="nav-cta" href="#subscribe">Subscribe</a></li></ul>
+    </nav>
+  </div>
+</header>
+<main>
+<div class="masthead">
+  <div class="container">
+    <div class="kicker">Paper · 22 November 2026</div>
+    <h1>The check came after the change</h1>
+    <p class="lede">What an AI agent found when I handed it AI BVF for a weekend, and how to run it yourself. The first part is for executives. The second is for the people who will set it up.</p>
+    <p class="jump"><a href="#executives">For executives</a><a href="#technical">For technical staff</a></p>
+  </div>
+</div>
+
+<section id="executives">
+  <div class="container narrow prose">
+    <div class="kicker">For executives</div>
+    <h2>What the agent found</h2>
+    <p>On Saturday I gave an AI agent the export from a service desk, 882 cases from a made-up retailer called Halden &amp; Co, and asked it what the team should change. It listed six processes, and for one of them, address changes, it reported that 53 percent of cases come back after they are closed.</p>
+    <p>On Sunday it did the thing I built this for. It went into the order of the steps and found the cause, which is that the order system writes the new address to the order before anyone on the desk has checked it, so the change is already made by the time a person looks at it. Its draft moved the check to the front, named who decides, proposed a target for one month on, and listed everything it had assumed.</p>
+    <p>I named the process and nothing more. It worked under a small set of rules, and those rules are what this paper is about.</p>
+
+    <h2>What AI BVF is</h2>
+    <p>AI BVF is a free, open framework that gives any AI investment one of three answers, Accelerate, Fix or Stop. The rules that give the answer are fixed and published, so the same inputs give the same answer whoever asks, and no model decides.</p>
+    <p>The agent does the reading a leader has no time for. It goes through what your organisation has already written, the business cases, the steering minutes, the vendor proposals, and answers five plain questions about each AI idea using only words it can quote. Where it finds no words the answer stays unknown, and the verdict waits.</p>
+    <p>At the same made-up retailer it found three AI ideas in ten documents. It returned Fix for an agent that issues refunds, because nobody was named to approve anything above its limit or to switch it off, and Stop for an agent that emails discounts with no cap and no approval. It refused to judge a vendor's proposal, because nobody had tested the vendor's figures on the retailer's own invoices.</p>
+
+    <h2>The question it leaves you with</h2>
+    <p>An agent that can issue a refund, send an offer or pay an invoice acts before anyone has read what it decided. So here is the question for the people who fund it. Should this AI be allowed to act, and who can stop it?</p>
+    <p>The refund agent at Halden had a business case that finance had signed off, an active sponsor, a budget for the change and rewritten roles for the team, and it still came back Fix, with nobody named to stop it and the team's measures unchanged. That is the mirror I want an executive team to look into before the pilot goes live.</p>
+
+    <h2>What you can check</h2>
+    <p>Everything the agent returns can be checked. Every answer carries the sentence it rests on and the document that sentence came from, and the one-page brief for each verdict shows the two side by side.</p>
+    <p>The verdict and every euro figure come from the published rules, and where the team's hourly cost is not known there is no euro figure at all. The agent's standing instruction is to draft and never send, and AI BVF's own tools only read and calculate.</p>
+    <p>One vendor email in the test carried a line telling any AI assistant to rate the proposal Accelerate. The agent reported the line and ignored it.</p>
+
+    <h2>What it has not done yet</h2>
+    <p>No real system export has been through it, only the made-up one, and the savings it sized for that desk were modest, between €15,000 and €35,000 a year across five processes. A log also shows only the work that passes through that one system, so whatever happens in email, meetings and spreadsheets stays outside what the agent can see.</p>
+    <p>The weekend exposed two faults, one in how an outside agent answers the fifth question and one on Windows, and both are fixed and have been run again by the agent that found them. An agent's draft is still a model's writing, and it is there to be read by the person who owns the work before anything changes.</p>
+
+    <h2>What to do with this</h2>
+    <ul class="actions">
+      <li>Try it in one tap on the made-up retailer, on your phone: <a href="https://www.aibvf.com/agent">aibvf.com/agent</a></li>
+      <li>Put one AI idea of your own through five questions: <a href="https://www.aibvf.com/start">aibvf.com/start</a></li>
+      <li>Send the second half of this page to the person who runs your AI tools.</li>
+      <li>Write to me <a href="https://linkedin.com/in/Craig-Horton-ai" target="_blank" rel="noopener">on LinkedIn</a> if you want to run it on a real department's log. That is the test I want next.</li>
+    </ul>
+    <p>AI BVF is a personal project, built in my own time. No employer or customer data was used, and every example on this page is a made-up company.</p>
+  </div>
+</section>
+
+<section id="technical">
+  <div class="container narrow prose">
+    <div class="kicker">For technical staff</div>
+    <h2>How to run it</h2>
+    <p>There are three ways to run the agent, and one further job it can do, the deep dive into a system log. Each is set out here in full, as it stood on 22 November 2026. Where this page and the repository disagree, the <a href="https://github.com/Craig-Horton/ai-bvf" target="_blank" rel="noopener">repository</a> is right.</p>
+
+    <h3>What it is made of</h3>
+    <ul class="plain">
+      <li><strong>The engine.</strong> <code>@aibvf/core</code> 0.14.1, in TypeScript. It holds the questions, the scores each answer carries, the thresholds and the rules. It is deterministic and MIT licensed.</li>
+      <li><strong>The connector.</strong> <code>aibvf-mcp</code> 0.18.1, a Model Context Protocol server with 13 tools. It is hosted at <code>https://mcp.aibvf.com/api/mcp</code>, with no account and no sign-in, and it runs on your own machine with <code>npx -y aibvf-mcp</code>.</li>
+      <li><strong>The operating brief.</strong> One short text that is the agent's whole rulebook: the mandate, the run and the rules. The connector serves it as the prompt <code>aibvf_agent</code>.</li>
+      <li><strong>Two skills.</strong> <code>aibvf-agent</code> wraps the brief for assistants that load skills. <code>aibvf-deep-dive</code> carries the script that counts a log. Both are in the repository under <code>skills/</code>.</li>
+    </ul>
+
+    <h3>1. On the site, with no setup</h3>
+    <ol>
+      <li>Open <a href="https://www.aibvf.com/agent">aibvf.com/agent</a>.</li>
+      <li>Choose "Run it on the example company". The agent runs on Halden &amp; Co, three mails and seven documents, and you hand over nothing.</li>
+      <li>For your own documents, paste the text or add Word, PowerPoint, PDF and text files, choose the industry, give the number of people, and choose "Run the agent".</li>
+      <li>Choose "Download the register". The site keeps nothing, and the register holds every answer, quote and review date.</li>
+    </ol>
+    <p>One run takes up to 20 documents and 120,000 characters, and judges up to eight initiatives. An address may start four runs in ten minutes. Files are read on your device and only their text is sent, to the site and to Claude, the model that reads them.</p>
+
+    <h3>2. In the AI chat app you already use</h3>
+    <p>In Claude, on the web and the desktop:</p>
+    <ol>
+      <li>Open Settings, then Connectors. Choose "Add custom connector", name it AI BVF and paste <code>https://mcp.aibvf.com/api/mcp</code>.</li>
+      <li>Download <a href="https://github.com/Craig-Horton/ai-bvf/raw/main/aibvf-agent.zip">aibvf-agent.zip</a>.</li>
+      <li>Open Customize, then Skills. Choose "+", then "+ Create skill", then "Upload a skill", and pick the zip. Code execution has to be switched on for skills to load.</li>
+      <li>Say: "Run the AI BVF agent." Attach the files to the chat, or name a folder the app can already read.</li>
+    </ol>
+    <p>In ChatGPT, Copilot, Gemini, Perplexity or Grok, add the same address as a connector. <a href="https://www.aibvf.com/assistants">aibvf.com/assistants</a> shows where to paste it in each app. Then copy the brief from <a href="https://www.aibvf.com/agent">aibvf.com/agent</a> into a new chat and say "Run the AI BVF agent."</p>
+    <p>In Claude Code:</p>
+<pre><code>mkdir -p ~/.claude/skills
+unzip aibvf-agent.zip -d ~/.claude/skills
+claude mcp add --transport http aibvf https://mcp.aibvf.com/api/mcp</code></pre>
+
+    <h3>3. In OpenClaw</h3>
+    <p>This is the route the weekend's test took, in the Windows app.</p>
+    <ol>
+      <li>Open Config, then Mcp. In the box under "MCP Servers", paste the line below and save.</li>
+    </ol>
+<pre><code>{"aibvf": {"url": "https://mcp.aibvf.com/api/mcp", "transport": "streamable-http"}}</code></pre>
+    <ol start="2">
+      <li>Ask the agent which tools it has. It should list 13 from <code>aibvf</code>.</li>
+      <li>Message it: "Get the prompt aibvf_agent from the aibvf server and follow it." It states its mandate and asks once whether to change it.</li>
+      <li>Then: "Do this every Monday at 07:00." It schedules itself and reports in that chat. "Pause AI BVF" stops every run.</li>
+    </ol>
+    <p>From a terminal the same steps are the lines below. The Gateway has to be stopped while a connector is added.</p>
+<pre><code>openclaw gateway stop
+openclaw mcp add aibvf --url https://mcp.aibvf.com/api/mcp --transport streamable-http
+openclaw gateway start
+openclaw automations create "0 7 * * 1" "Run the aibvf-agent skill. Reply NO_REPLY when nothing changed." --name "AI BVF weekly check" --tz Europe/Amsterdam</code></pre>
+    <p>An OpenClaw agent can reach the whole computer it runs on. The brief tells it to read only its workspace and what you send it or point it to, until you name more.</p>
+
+    <h3>4. The deep dive into a system log</h3>
+    <p>The deep dive needs an agent that can run a Node script and reach the connector, and a log exported as a CSV file with one row for each step of each case. A ticket, order, claims or invoice system gives that.</p>
+    <ol>
+      <li>Give the agent this message, with your own log in place of the example:</li>
+    </ol>
+    <p class="quoted">Fetch SKILL.md and scripts/measure.mjs from github.com/Craig-Horton/ai-bvf/tree/main/skills/aibvf-deep-dive into a folder named aibvf-deep-dive in your workspace. Fetch examples/process-deep-dive/halden-service-desk/tickets.csv from the same repository. Then follow SKILL.md on that log. The department is the customer service desk of Halden &amp; Co.</p>
+    <ol start="2">
+      <li>The agent reads the header and the first twenty rows, decides which column is which, and shows you the mapping.</li>
+      <li>It runs the script, which counts on your machine. No model counts anything.</li>
+    </ol>
+<pre><code>node measure.mjs LOG.csv --case COLUMN --process COLUMN --time COLUMN --actor COLUMN \
+  --actor-type COLUMN --system-value VALUE --minutes COLUMN \
+  --step COLUMN --reopen-value VALUE --function ID --rate 38 \
+  --department "NAME" --organisation "NAME"</code></pre>
+    <table>
+      <thead><tr><th>Option</th><th>What it names</th></tr></thead>
+      <tbody>
+        <tr><td><code>--case</code></td><td>The column that holds the case. Needed.</td></tr>
+        <tr><td><code>--process</code></td><td>The column that holds the process or category. Needed.</td></tr>
+        <tr><td><code>--time</code></td><td>The column that holds the time of the step. Needed.</td></tr>
+        <tr><td><code>--actor</code></td><td>The column that holds who did the step. Needed.</td></tr>
+        <tr><td><code>--actor-type</code>, <code>--system-value</code></td><td>The column and the value that mark a step done by a system. <code>--system-actors</code> takes a list of names in their place.</td></tr>
+        <tr><td><code>--minutes</code></td><td>The column that holds the minutes worked on a step.</td></tr>
+        <tr><td><code>--step</code>, <code>--reopen-value</code></td><td>The column that names the step, and the value that marks a case that came back.</td></tr>
+        <tr><td><code>--function</code></td><td>The business function, as the tool <code>map_to_taxonomy</code> returns it.</td></tr>
+        <tr><td><code>--rate</code></td><td>What an hour of the team costs in euros, with salary and overheads.</td></tr>
+        <tr><td><code>--spend</code></td><td>The yearly spend on tools for a process. Counted as zero when left out.</td></tr>
+        <tr><td><code>--department</code>, <code>--organisation</code></td><td>The names the report page carries.</td></tr>
+      </tbody>
+    </table>
+    <p>Leave an option out when the log has no such column. The script lists what it could not count, and a process with a signal missing is not judged.</p>
+    <ol start="4">
+      <li>The agent asks once what an hour of the team costs. Without that there is no euro figure.</li>
+      <li>It passes each process's counts, unchanged, to the tool <code>diagnose_process</code>. The first rule that fits chooses the change.</li>
+    </ol>
+    <table>
+      <thead><tr><th>The process</th><th>The change</th></tr></thead>
+      <tbody>
+        <tr><td>Fewer than 250 a year, and heavy</td><td>Eliminate or insource</td></tr>
+        <tr><td>30 percent of cases or more come back</td><td>Quality controls</td></tr>
+        <tr><td>15 minutes of work or less, one person at most, 1,000 a year or more</td><td>Automate</td></tr>
+        <tr><td>None of these</td><td>The largest source of drag decides</td></tr>
+      </tbody>
+    </table>
+    <p>The three thresholds are my judgement and come from no benchmark. They are named constants in the code, and the result says which rule chose.</p>
+    <ol start="6">
+      <li>You get a short summary in the chat and one link to the full report, at <code>aibvf.com/deep-dive</code>. The counts travel inside the link after the <code>#</code> sign, the page runs the engine in your browser, and nothing is stored. One link carries up to 40 processes and says how many it leaves out.</li>
+      <li>Name a process and the agent drafts the change. It first counts the flow of that process with <code>--flow "PROCESS"</code>: the orders the steps come in, who does each step, and how long after the step before. The short draft fits one screen, and the full draft follows when you ask.</li>
+    </ol>
+    <p>The draft never recommends GenAI the first time. A process is redesigned and judged again before that.</p>
+
+    <h3>What leaves the machine</h3>
+    <ul class="plain">
+      <li><strong>The deep dive.</strong> The rows of the log stay on your computer. The counts for each process go to the connector.</li>
+      <li><strong>An AI idea.</strong> The proposal, the answers and the quoted lines go to the connector with each call, so that it can judge them. It keeps none of them.</li>
+      <li><strong>A run on the site.</strong> The text of your documents goes to the site and to Claude. The site keeps none of it.</li>
+      <li><strong>The count.</strong> Each tool call is counted anonymously: the tool, the version, hosted or local, the industry, function and AI type, the verdict, and whether a person or an agent answered. No proposal, quote, score or revenue figure is in it.</li>
+      <li><strong>Switching the count off.</strong> Run <code>aibvf-mcp</code> yourself with <code>AIBVF_TELEMETRY_DISABLE=1</code>. The hosted connector always counts.</li>
+      <li><strong>The links.</strong> A brief link and a report link carry their content after the <code>#</code> sign, which a browser does not send to a server.</li>
+    </ul>
+
+    <h3>How it is held to account</h3>
+    <ul class="plain">
+      <li><strong>The rules are code.</strong> The questions and the score each answer carries are in <a href="https://github.com/Craig-Horton/ai-bvf/blob/main/packages/js/src/guidedQuestions.ts" target="_blank" rel="noopener">guidedQuestions.ts</a>. The process rules are in <a href="https://github.com/Craig-Horton/ai-bvf/blob/main/packages/js/src/diagnose.ts" target="_blank" rel="noopener">diagnose.ts</a>.</li>
+      <li><strong>Evidence or unknown.</strong> The engine counts an answer with no quote and no source as not known. On the site, code checks every quote word for word against the documents before the engine sees it.</li>
+      <li><strong>A contradiction holds the verdict.</strong> A quote that says the opposite of the answer it was given for holds the verdict at Fix and is named.</li>
+      <li><strong>Tests.</strong> 151 on the engine, 11 on the connector and 15 on the script that counts a log. Every tool publishes one working call, and a test makes all 13.</li>
+    </ul>
+
+    <h3>What is not settled</h3>
+    <ul class="plain">
+      <li>No real system export has been read. Every run so far used the made-up retailer.</li>
+      <li>The script reads CSV. A system that only offers an API needs its rows exported first.</li>
+      <li>The flow count and the short draft have been run once, by one agent, on the made-up log. Every figure in that draft was a count the script printed.</li>
+      <li>The fifth question reaches an outside agent in a field named <code>open_questions</code>. An agent that holds an older copy of the brief has to fetch the brief again to be told about it.</li>
+      <li>OpenClaw has no one-line install yet. That waits on a listing in its skill directory.</li>
+    </ul>
+    <p>Tell me what is wrong and what is missing, <a href="https://github.com/Craig-Horton/ai-bvf/issues" target="_blank" rel="noopener">in the repository</a> or on LinkedIn.</p>
+  </div>
+</section>
+<section class="subscribe" id="subscribe">
+  <div class="container">
+    <div class="kicker">The Transformation Brief</div>
+    <h2>A weekly signal, for leaders who need signal, not volume.</h2>
+    <p>Friday mornings, in your inbox.</p>
+    <form class="subscribe-form" data-source="paper-agent" data-status="subscribe-status" novalidate>
+      <input type="email" name="email" required placeholder="Your email" autocomplete="email" aria-label="Email address">
+      <button type="submit">Get the Friday Brief</button>
+    </form>
+    <p class="subscribe-status" id="subscribe-status" role="status" aria-live="polite"></p>
+    <p class="subscribe-hint">No spam. Unsubscribe with one click. Also available <a href="https://www.linkedin.com/newsletters/the-transformation-brief-7445765347598684160" target="_blank" rel="noopener">on LinkedIn</a>.</p>
+  </div>
+</section>
+</main>
+<footer class="site-footer">
+  <div class="container">
+    <div class="name">Craig Horton</div>
+    <p>The Transformation Brief is written in a personal capacity and uses public sources.</p>
+    <p>&copy; 2026 Craig Horton</p>
+  </div>
+</footer>
+<script src="./site.js" defer></script>
+<script defer src="/_vercel/insights/script.js"></script>
+</body>
+</html>
